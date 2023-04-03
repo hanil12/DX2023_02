@@ -131,14 +131,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //
 
-HPEN bluePen;
-struct Vector2
-{
-    float x = 0.0f;
-    float y = 0.0f;
-};
-
-Vector2 mousePos;
+shared_ptr<Program> program;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -146,8 +139,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
     {
-        bluePen = CreatePen(PS_SOLID, 3, RGB(0, 0, 255));
+        program = make_shared<Program>();
+        SetTimer(hWnd, 1, 10, nullptr); // 0.1초마다 WM_TIMER 메시지를 보내겠다.
+        break;
+    }
 
+    case WM_TIMER:
+    {
+        // Update
+        program->Update();
+        InvalidateRect(hWnd, nullptr, true);
         break;
     }
 
@@ -171,9 +172,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     case WM_MOUSEMOVE:
     {
-        mousePos.x = static_cast<float>(LOWORD(lParam));
-        mousePos.y = static_cast<float>(HIWORD(lParam));
-        InvalidateRect(hWnd, nullptr, true); // WM_PAINT 메시지를 보내주는 얘
+        // mousePos.x = static_cast<float>(LOWORD(lParam));
+        // mousePos.y = static_cast<float>(HIWORD(lParam));
 
         break;
     }
@@ -182,30 +182,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-
-
-            // 사각형 그리기
-            float left = mousePos.x - 50;
-            float top = mousePos.y - 50;
-            float right = mousePos.x + 50;
-            float bottom = mousePos.y + 50;
-
-            Rectangle(hdc, left, top, right, bottom);
-
-            // 원 그리기
-            Ellipse(hdc, 100, 100, 200, 200);
-
-            SelectObject(hdc, bluePen);
-            // 선 그리기
-            MoveToEx(hdc, 0, 0, nullptr); // 시작점
-            LineTo(hdc, 200, 200);        // 끝점
+            program->Render(hdc);
 
             EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
-        DeleteObject(bluePen);
-
         PostQuitMessage(0);
         break;
     default:
