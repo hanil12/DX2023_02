@@ -106,14 +106,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   HWND hWnd = CreateWindowW(
+       szWindowClass,                       // 윈도우 창 클래스 이름
+       szTitle,                             // 윈도우 타이틀 이름
+       WS_OVERLAPPEDWINDOW,                 // 윈도우 스타일
+      0, 0, WIN_WIDTH, WIN_HEIGHT,   // 윈도우 창 크기
+       nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
       return FALSE;
    }
 
+   SetMenu(hWnd, NULL);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -132,6 +137,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 
 shared_ptr<Program> program;
+Vector2 mousePos;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -140,7 +146,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_CREATE:
     {
         program = make_shared<Program>();
-        SetTimer(hWnd, 1, 10, nullptr); // 0.1초마다 WM_TIMER 메시지를 보내겠다.
+        SetTimer(hWnd, 1, 1, nullptr); // 0.01초마다 WM_TIMER 메시지를 보내겠다.
         break;
     }
 
@@ -172,8 +178,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     case WM_MOUSEMOVE:
     {
-        // mousePos.x = static_cast<float>(LOWORD(lParam));
-        // mousePos.y = static_cast<float>(HIWORD(lParam));
+        mousePos.x = static_cast<float>(LOWORD(lParam));
+        mousePos.y = static_cast<float>(HIWORD(lParam));
 
         break;
     }

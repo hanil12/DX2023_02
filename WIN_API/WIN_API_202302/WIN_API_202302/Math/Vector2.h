@@ -35,7 +35,7 @@ public:
         return *this;
     }
 
-    float Distance() const
+    float Length() const
     {
         return sqrtf(powf(this->x, 2) + powf(this->y, 2));
     }
@@ -56,14 +56,14 @@ public:
     }
     void Normallize()
     {
-        this->x /= Distance();
-        this->y /= Distance();
+        this->x /= Length();
+        this->y /= Length();
     }
     Vector2 NormalVector2() const
     {
         Vector2 result;
-        result.x = this->x / Distance();
-        result.y = this->y / Distance();
+        result.x = this->x / Length();
+        result.y = this->y / Length();
 
         return result;
     }

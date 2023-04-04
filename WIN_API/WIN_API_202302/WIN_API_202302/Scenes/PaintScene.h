@@ -10,6 +10,8 @@ public:
 	virtual void Render(HDC hdc) override;
 private:
 	shared_ptr<CircleCollider> _circle;
+	shared_ptr<CircleCollider> _circleMouse;
+	shared_ptr<RectCollider> _rect;
 	float _speed = 10.0f;
 };
 
