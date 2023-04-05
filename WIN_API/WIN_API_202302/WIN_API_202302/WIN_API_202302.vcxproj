@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scenes\LineScene.h" />
+    <ClInclude Include="Math\Collider.h" />
+    <ClInclude Include="Math\Line.h" />
     <ClInclude Include="Math\CircleCollider.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Math\RectCollider.h" />
@@ -164,6 +167,9 @@
     <ClInclude Include="WIN_API_202302.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scenes\LineScene.cpp" />
+    <ClCompile Include="Math\Collider.cpp" />
+    <ClCompile Include="Math\Line.cpp" />
     <ClCompile Include="Math\CircleCollider.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
