@@ -49,6 +49,15 @@ ColResult_Line Line::IsCollision(shared_ptr<Line> other)
 	{
 		result.isCollision = true;
 		// 충돌지점넣기
+		float aArea = abs(a.Cross(a1));
+		float bArea = abs(a.Cross(a2));
+
+		float ratio = aArea / (aArea + bArea);
+
+		float length = b.Length() * ratio;
+		Vector2 bNormal = b.NormalVector2();
+		result.contact = other->_start + bNormal * length;
+
 		return result;
 	}
 

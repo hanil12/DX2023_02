@@ -4,10 +4,11 @@
 #include "../Scenes/PaintScene.h"
 #include "../Scenes/LineScene.h"
 #include "../Scenes/LineCollisionScene.h"
+#include "../Scenes/CannonScene.h"
 
 Program::Program()
 {
-	_curScene = make_shared<LineCollisionScene>();
+	_curScene = make_shared<CannonScene>();
 }
 
 Program::~Program()
