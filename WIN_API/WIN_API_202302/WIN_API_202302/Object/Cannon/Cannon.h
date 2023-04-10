@@ -35,5 +35,8 @@ private:
 	vector<shared_ptr<Bullet>> _bullets;
 
 	weak_ptr<Cannon> _target;
+
+	HPEN _pen;
+	HBRUSH _brush;
 };
 

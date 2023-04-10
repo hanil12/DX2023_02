@@ -16,10 +16,16 @@ void Bullet::Update()
 		return;
 
 	_collider->MoveCenter(_direction * _speed);
-	_direction.y += GRAVITY;
+	//_direction.y += GRAVITY;
 
-	if (_collider->GetCenter().y > WIN_HEIGHT)
-		_isActive = false;
+	//if (_collider->GetCenter().y > WIN_HEIGHT)
+	//	_isActive = false;
+
+	// 화면에 나갈려고할 때 정반사
+	if(_collider->GetCenter().y < 0.0f || _collider->GetCenter().y > WIN_HEIGHT)
+		_direction.y *= -1;
+	if (_collider->GetCenter().x < 0.0f || _collider->GetCenter().x > WIN_WIDTH)
+		_direction.x *= -1;
 
 	_collider->Update();
 }

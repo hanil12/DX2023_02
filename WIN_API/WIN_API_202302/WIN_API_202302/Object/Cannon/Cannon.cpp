@@ -13,10 +13,15 @@ Cannon::Cannon(Vector2 pos)
 		shared_ptr<Bullet> bullet = make_shared<Bullet>();
 		_bullets.push_back(bullet);
 	}
+
+	_brush = CreateSolidBrush(BLUE);
+	_pen = CreatePen(PS_SOLID, 5, BLUE);
 }
 
 Cannon::~Cannon()
 {
+	DeleteObject(_brush);
+	DeleteObject(_pen);
 }
 
 void Cannon::Update()
@@ -46,7 +51,18 @@ void Cannon::Render(HDC hdc)
 	if (!_isActive) return;
 
 	_muzzle->Render(hdc);
+
+	SelectObject(hdc, _brush);
+	SelectObject(hdc, _pen);
+
 	_body->Render(hdc);
+
+	//shared_ptr<CircleCollider> temp = dynamic_pointer_cast<CircleCollider>(_body);
+	//float left = temp->GetCenter().x - temp->GetRadius();
+	//float right = temp->GetCenter().x + temp->GetRadius();
+	//float top = temp->GetCenter().y - temp->GetRadius();
+	//float bottom = temp->GetCenter().y + temp->GetRadius();
+	//Ellipse(hdc, left, top, right, bottom);
 
 	for (auto& bullet : _bullets)
 	{
