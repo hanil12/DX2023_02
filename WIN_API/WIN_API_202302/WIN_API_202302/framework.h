@@ -36,6 +36,9 @@ using namespace std;
 #include "Object/Cannon/Bullet.h"
 #include "Object/Cannon/Cannon.h"
 
+#include "Object/Maze/MazeBlock.h"
+#include "Object/Maze/Maze.h"
+
 // Scene
 #include "Scenes/Scene.h"
 
@@ -43,3 +46,4 @@ using namespace std;
 #include "Program/Program.h"
 
 extern Vector2 mousePos;
+extern bool isDebugMode;

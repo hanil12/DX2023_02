@@ -20,7 +20,8 @@ void RectCollider::Update()
 
 void RectCollider::Render(HDC hdc)
 {
-	SelectObject(hdc, _pens[_curPenIndex]);
+	if(isDebugMode)
+		SelectObject(hdc, _pens[_curPenIndex]);
 
 	float left		 = _center.x - _halfSize.x;
 	float top		 = _center.y - _halfSize.y;
