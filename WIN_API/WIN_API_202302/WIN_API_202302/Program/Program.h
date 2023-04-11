@@ -9,7 +9,12 @@ public:
 	void Update();
 	void Render(HDC hdc);
 
+	// ¹é¹öÆÛ
+	static HDC _backBuffer;
+
 private:
 	shared_ptr<Scene> _curScene;
+
+	HBITMAP _hBit;
 };
 

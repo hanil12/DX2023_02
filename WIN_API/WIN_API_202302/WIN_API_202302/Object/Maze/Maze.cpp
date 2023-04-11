@@ -49,6 +49,54 @@ void Maze::Render(HDC hdc)
 	}
 }
 
+// Maze for Programmers
 void Maze::CreateMaze()
 {
+	for (int y = 0; y < _poolCountY; ++y)
+	{
+		for (int x = 0; x < _poolCountX; ++x)
+		{
+			if (x % 2 == 0 || y % 2 == 0)
+				_blocks[y][x]->SetType(MazeBlock::BlockType::DISABLE);
+			else
+				_blocks[y][x]->SetType(MazeBlock::BlockType::ABLE);
+		}
+	}
+
+	// 랜덤하게 오른쪽 혹은 아래쪽으로 길을 뚫는 작업
+	for (int y = 0; y < _poolCountY; ++y)
+	{
+		for (int x = 0; x < _poolCountX; ++x)
+		{
+			// 처음 설정한 노드가 아닌 경우
+			if(x % 2 == 0 || y % 2 == 0)
+				continue;
+
+			// 끝지점에서는 오른쪽 혹은 아래쪽 길 뚫기 중지
+			if (x == _poolCountX - 2 && y == _poolCountY - 2)
+			{
+				continue;
+			}
+
+			// 랜덤으로 우측 혹은 아래로만 뚫었을 때 길이 안생기는 것 예외처리
+			if (y == _poolCountY - 2)
+			{
+				_blocks[y][x + 1]->SetType(MazeBlock::BlockType::ABLE);
+				continue;
+			}
+
+			if (x == _poolCountX - 2)
+			{
+				_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
+				continue;
+			}
+
+			// 랜덤하게 오른쪽 혹은 아래쪽 길 뚫기
+			const int randValue = rand() % 2;
+			if(randValue == 0) // 오른쪽 길뚫기
+				_blocks[y][x + 1]->SetType(MazeBlock::BlockType::ABLE);
+			else // 아래쪽 길뚫기
+				_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
+		}
+	}
 }

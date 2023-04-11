@@ -20,6 +20,7 @@
 #include <string>
 #include <algorithm>
 #include <memory>
+#include <time.h>
 
 using namespace std;
 
@@ -46,4 +47,5 @@ using namespace std;
 #include "Program/Program.h"
 
 extern Vector2 mousePos;
+extern HWND hWnd;
 extern bool isDebugMode;
