@@ -21,6 +21,9 @@ Maze::Maze()
 	}
 
 	CreateMaze();
+
+	_blocks[1][1]->SetType(MazeBlock::BlockType::START);
+	_blocks[_poolCountY - 2][_poolCountX - 2]->SetType(MazeBlock::BlockType::END);
 }
 
 Maze::~Maze()
@@ -99,4 +102,14 @@ void Maze::CreateMaze()
 				_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
 		}
 	}
+}
+
+MazeBlock::BlockType Maze::GetBlockType(int y, int x)
+{
+	if(y < 0 || y > _poolCountY)
+		return MazeBlock::BlockType::NONE;
+	if(x < 0 || x > _poolCountX)
+		return MazeBlock::BlockType::NONE;
+
+	return _blocks[y][x]->GetType();
 }

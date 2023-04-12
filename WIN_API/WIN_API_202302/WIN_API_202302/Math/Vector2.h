@@ -37,6 +37,9 @@ public:
         return *this;
     }
 
+    bool operator==(const Vector2& other);
+    bool operator!=(const Vector2& other);
+
     float Length() const
     {
         return sqrtf(powf(this->x, 2) + powf(this->y, 2));
