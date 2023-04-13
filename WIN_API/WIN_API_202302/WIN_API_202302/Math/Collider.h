@@ -23,17 +23,21 @@ public:
 	void SetCenter(const Vector2& value);
 	const Vector2& GetCenter() { return _center; }
 
-	void SetGreen() { _curPenIndex = 0; }
-	void SetRed() { _curPenIndex = 1; }
+	void SetGreen() { _curPenIndex = 1; }
+	void SetRed() { _curPenIndex = 2; }
 
 	virtual bool IsCollision(Vector2 pos) abstract;
 	bool IsCollision(shared_ptr<Collider> col);
 	virtual bool IsCollision(shared_ptr<CircleCollider> other) abstract;
 	virtual bool IsCollision(shared_ptr<RectCollider> other) abstract;
 
+	static void DebugModeOnOff() { _isDebugMode = !_isDebugMode; }
+
 protected:
+	static bool _isDebugMode;
+
 	vector<HPEN> _pens;
-	UINT _curPenIndex = 0;
+	UINT _curPenIndex = 1;
 
 	Vector2 _center = { 0.0f,0.0f };
 	ColliderType _type;

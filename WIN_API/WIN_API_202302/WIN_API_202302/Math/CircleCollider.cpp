@@ -18,8 +18,14 @@ void CircleCollider::Update()
 
 void CircleCollider::Render(HDC hdc)
 {
-	if(isDebugMode)
+	if (_isDebugMode)
+	{
 		SelectObject(hdc, _pens[_curPenIndex]);
+	}
+	else
+	{
+		SelectObject(hdc, _pens[0]);
+	}
 
 	float left = _center.x - _radius;
 	float top = _center.y - _radius;

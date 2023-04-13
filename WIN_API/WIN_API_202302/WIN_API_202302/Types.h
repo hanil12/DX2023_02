@@ -16,6 +16,7 @@
 #define BLUE		 RGB(0,0,255)
 #define YELLOW		 RGB(255,255,0)
 #define CYAN		 RGB(0,255,255)
+#define GREY		 RGB(125,125,125)
 
 #define LERP(s,e,t) s + (e - s)*t
 
@@ -24,8 +25,6 @@ struct ColResult_Line
 	bool isCollision;
 	Vector2 contact;
 };
-
-static bool isDebugMode = false;
 
 enum Dir
 {

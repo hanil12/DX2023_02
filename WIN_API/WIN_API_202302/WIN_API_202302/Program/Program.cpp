@@ -30,8 +30,10 @@ Program::~Program()
 
 void Program::Update()
 {
-	if(GetAsyncKeyState(VK_F1) & 0x0001)
-		isDebugMode = true;
+	if (GetAsyncKeyState(VK_F1) & 0x0001)
+	{
+		Collider::DebugModeOnOff();
+	}
 
 	_curScene->Update();
 }

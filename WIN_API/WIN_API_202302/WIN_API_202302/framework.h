@@ -14,6 +14,8 @@
 #include <memory.h>
 #include <tchar.h>
 #include <math.h>
+#include <stack>
+#include <queue>
 #include <vector>
 #include <unordered_map>
 #include <map>
@@ -49,4 +51,3 @@ using namespace std;
 
 extern Vector2 mousePos;
 extern HWND hWnd;
-extern bool isDebugMode;
