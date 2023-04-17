@@ -8,6 +8,8 @@ public:
 	void Update();
 
 	void LeftHand();
+	void DFS(Vector2 start);
+
 	bool Cango(int y, int x);
 
 private:
@@ -19,5 +21,8 @@ private:
 	vector<Vector2> _path;
 	int _pathIndex = 0;
 	float _time = 0.0f;
+
+	// DFS
+	vector<vector<bool>> _visited;
 };
 

@@ -11,11 +11,13 @@ using namespace std;
 
 vector<vector<bool>> adjacent2;
 vector<bool> discovered;
+vector<int> parent;
 
 void CreateGraphByMatrix()
 {
 	adjacent2 = vector<vector<bool>>(7, vector<bool>(7, false));
-	discovered = vector<bool>(7,false);
+	discovered = vector<bool>(7, false);
+	parent = vector<int>(7, -1);
 
 	adjacent2[0][0] = true;
 	adjacent2[0][1] = true;
@@ -44,53 +46,50 @@ void CreateGraphByMatrix()
 	adjacent2[6][6] = true;
 }
 
-void DFS(int start)
+void BFS(int start)
 {
-	if(discovered[start])
-		return;
+	queue<int> queue;
+	parent[start] = start;
+	queue.push(start);
 
-	discovered[start] = true;
-	cout << start << "를 방문했습니다."<< endl;
-
-	for (int there = 0; there < adjacent2.size(); there++)
+	while (true)
 	{
-		// 갈곳이 출발점과 동일하면 다음
-		if(start == there)
-			continue;
+		if(queue.empty() == true)
+			break;
 
-		// 인접해있냐?
-		if(adjacent2[start][there] == false)
-			continue;
+		int here = queue.front();
+		queue.pop();
 
-		// 방문여부
-		if(discovered[there] == true)
-			continue;
-
-		// 갈 곳을 찾은 경우
-		DFS(there);
-	}
-}
-
-int DfsAll()
-{
-	int count = 0;
-
-	for (int start = 0; start < 7; start++)
-	{
-		if (discovered[start] == false)
+		for (int there = 0; there < 7; there++)
 		{
-			DFS(start);
-			count++;
+			if(adjacent2[here][there] == false)
+				continue;
+
+			if(discovered[there])
+				continue;
+
+			queue.push(there);
+			parent[there] = here;
+			discovered[there] = true;
+			cout << there << " 방문!!!" << endl;
 		}
 	}
-
-	return count;
 }
 
 int main()
 {
 	CreateGraphByMatrix();
-	int count = DfsAll();
+	BFS(0);
+
+	int targetNode = 3;
+	while (true)
+	{
+		if(parent[targetNode] == targetNode)
+			break;
+
+		cout << targetNode << "의 부모 :" <<parent[targetNode] << endl;
+		targetNode = parent[targetNode];
+	}
 
 	return 0;
 }

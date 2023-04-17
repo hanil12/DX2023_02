@@ -5,7 +5,10 @@ MazeRunner::MazeRunner(shared_ptr<Maze> maze)
 : _maze(maze)
 , _pos(maze->Start())
 {
-	LeftHand();
+	// LeftHand();
+	// DFS
+	_visited = vector<vector<bool>>(maze->GetY(), vector<bool>(maze->GetX(),false));
+	DFS(_pos);
 }
 
 MazeRunner::~MazeRunner()
@@ -104,6 +107,40 @@ void MazeRunner::LeftHand()
 	}
 
 	std::reverse(_path.begin(), _path.end());
+}
+
+void MazeRunner::DFS(Vector2 here)
+{
+	if(_visited[(int)here.y][(int)here.x] == true)
+		return;
+
+	Vector2 endPos = _maze->End();
+	if(_visited[endPos.y][endPos.x] == true)
+		return;
+
+	_visited[(int)here.y][(int)here.x] = true;
+	_path.push_back(here);
+
+	Vector2 frontPos[4] =
+	{
+		Vector2(0,-1), // UP
+		Vector2(1,0), // RIGHT
+		Vector2(0,1), // Down
+		Vector2(-1,0) // Left
+	};
+
+	for (int i = 0; i < 4; i++)
+	{
+		Vector2 there = here + frontPos[i];
+
+		if(_visited[there.y][there.x] == true)
+			continue;
+
+		if(Cango(there.y, there.x) == false)
+			continue;
+
+		DFS(there);
+	}
 }
 
 bool MazeRunner::Cango(int y, int x)
