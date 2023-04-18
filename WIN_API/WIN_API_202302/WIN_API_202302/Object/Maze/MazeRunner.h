@@ -9,6 +9,7 @@ public:
 
 	void LeftHand();
 	void DFS(Vector2 start);
+	void BFS();
 
 	bool Cango(int y, int x);
 
@@ -24,5 +25,9 @@ private:
 
 	// DFS
 	vector<vector<bool>> _visited;
+
+	// BFS
+	vector<vector<bool>> _discorvered;
+	vector<vector<Vector2>> _parents;
 };
 

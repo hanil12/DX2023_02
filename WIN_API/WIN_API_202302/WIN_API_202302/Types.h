@@ -17,6 +17,7 @@
 #define YELLOW		 RGB(255,255,0)
 #define CYAN		 RGB(0,255,255)
 #define GREY		 RGB(125,125,125)
+#define GREY2		 RGB(70,70,70)
 
 #define LERP(s,e,t) s + (e - s)*t
 
