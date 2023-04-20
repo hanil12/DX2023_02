@@ -13,6 +13,11 @@ bool Vector2::operator!=(const Vector2& other)
     return !this->operator==(other);
 }
 
+int Vector2::MahattanDistance(const Vector2& other) const
+{
+    return int(abs(x - other.x) + abs(y - other.y));
+}
+
 bool Vector2::IsBetween(Vector2 v1, Vector2 v2)
 {
     float cross1 = v1.Cross(*this);
