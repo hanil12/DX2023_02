@@ -2,6 +2,13 @@
 class Maze
 {
 public:
+	struct Edge
+	{
+		Vector2 u;
+		Vector2 v;
+		int cost;
+	};
+
 	Maze();
 	~Maze();
 
@@ -9,6 +16,7 @@ public:
 	void Render(HDC hdc);
 
 	void CreateMaze();
+	void CreateMazeByKruskal();
 
 	Vector2 Start() { return Vector2(1,1); }
 	Vector2 End() {return Vector2(int(_poolCountY - 2), int(_poolCountX - 2)); }
