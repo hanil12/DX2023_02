@@ -23,9 +23,12 @@ void MazeRunner::Update()
 	if (_pathIndex >= _path.size())
 	{
 		_maze->CreateMazeByKruskal();
+		_pos = _maze->Start();
 		_pathIndex = 0;
 		_path.clear();
 		Astar();
+		Vector2 end = _maze->End();
+		_maze->GetBlock(end.y, end.x)->SetType(MazeBlock::BlockType::END);
 		return;
 	}
 
@@ -378,8 +381,11 @@ void MazeRunner::Astar()
 
 		pq.pop();
 
-		if(here == end)
+		if (here == end)
+		{
+			_maze->GetBlock(end.y, end.x)->SetType(MazeBlock::BlockType::END);
 			break;
+		}
 
 		for (int i = 0; i < 8; i++)
 		{
