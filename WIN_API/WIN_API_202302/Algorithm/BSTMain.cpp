@@ -37,5 +37,7 @@ int main()
 
 	tree.Delete(searchNode);
 
+	tree.PrintTree(tree._root);
+
 	return 0;
 }

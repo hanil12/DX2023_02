@@ -53,8 +53,8 @@ void BinarySearchTree::PrintTree(Node* root)
 
 	if(root == nullptr)
 		return;
-	std::cout << root->key << std::endl;
 	PrintTree(root->left);
+	std::cout << root->key << std::endl;
 	PrintTree(root->right);
 }
 
@@ -115,12 +115,24 @@ Node* BinarySearchTree::Max(Node* root)
 
 Node* BinarySearchTree::Previous(Node* root)
 {
-	return nullptr;
+	if(root == nullptr)
+		return root;
+
+	if(root->left == nullptr)
+		return nullptr;
+
+	return Max(root->left);
 }
 
 Node* BinarySearchTree::Next(Node* root)
 {
-	return nullptr;
+	if (root == nullptr)
+		return root;
+
+	if (root->right == nullptr)
+		return nullptr;
+
+	return Min(root->right);
 }
 
 void BinarySearchTree::Replace(Node* node1, Node* node2)
@@ -148,6 +160,20 @@ void BinarySearchTree::Replace(Node* node1, Node* node2)
 	delete node1;
 }
 
-void BinarySearchTree::Delete(Node* Node)
+void BinarySearchTree::Delete(Node* node)
 {
+	if(node == nullptr)
+		return;
+
+	if(node->left == nullptr)
+		Replace(node, node->right);
+	else if(node->right == nullptr)
+		Replace(node, node->left);
+	else
+	{
+		Node* prev = Previous(node);
+		node->key = prev->key;
+		node->data = prev->data;
+		Delete(prev);
+	}
 }
