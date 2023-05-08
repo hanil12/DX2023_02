@@ -32,6 +32,9 @@
     <ClCompile Include="DX_1600.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc">
@@ -45,5 +48,8 @@
     <Image Include="DX_1600.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\TutorialShader.hlsl" />
   </ItemGroup>
 </Project>

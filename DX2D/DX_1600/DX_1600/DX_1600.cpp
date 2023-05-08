@@ -6,6 +6,75 @@
 
 #define MAX_LOADSTRING 100
 
+// WIN_API
+// CPU에서 그리는 작업을 해줬다.
+// -> pixel 계산
+
+// 1980 * 1080... CPU가 다 하고 있었다.
+
+// DX
+// -> GPU한테 픽셀을 맡긴다.
+
+// 목표: DX11을 이용하여 2D 게임엔진을 만들기
+
+// CPU : 어려운 계산을 직렬처리한다.
+// GPU : 단순 계산을 병렬처리하는데 특화되어있다.
+// ALU가 많기 때문에 픽셀 병렬 계산에 특화되어있다.
+
+// DX 그래픽스
+// 영화 촬영
+// 카메라  /   카메라
+// 소품   /   Actor
+// 배우   /   Character(Pawn)
+// 총감독  /   프로그래머
+// 조명   /   Light
+// 영화사  /   게임엔진
+
+// 인력사무소장   /   Device
+// 연출담당     /   Device Context
+
+// 렌더링 파이프 라인
+// => 3D 가상 공간에서 2D인 모니터로 이어지는 파이프라인
+
+// 인력사무소장
+// 외주를 맡기고 실질적인 공사 대표 뽑기
+// 컴퓨터의 하드웨어 기능 점검, 리소스 할당(하드웨어에 접근할 수 있게 도와주는 얘)
+ComPtr<ID3D11Device> device;
+
+// 연출감독
+// 세트장을 실질적으로 꾸며주는 연출감독
+// 렌더링할 대상을 결정(어따가 그릴지 결정)
+// -> 리소스를 그래픽 파이프라인에 바인딩, GPU가 수행할 명령을 지시
+ComPtr<ID3D11DeviceContext> deviceContext;
+
+// DX의 인터페이스로써 1개 이상의 표면을 포함할 수 있다.
+// 각각의 표면(버퍼, 텍스쳐)을 출력하기 전에 데이터를 보관한다.
+ComPtr<IDXGISwapChain> swapChain;
+
+// 지금 당장 그릴 곳(후면 버퍼)을 가리키는 포인터
+// View... 포인터
+ComPtr<ID3D11RenderTargetView> renderTargetView;
+
+// 렌더링파이프라인 단계
+// -> 3차원에 있는 정점들을 2차원으로 투영 (Vertex Shader)
+// -> 정점들 사이에 있는 픽셀을 색을 결정 (Pixel Shader)
+// 그 외에... 최적화에 필요한 Shader(테셀레이션, Hull, Compute Shader)
+
+ComPtr<ID3D11Buffer> vertexBuffer; // 정점들을 담아놓는 버퍼
+ComPtr<ID3D11VertexShader> vertexShader;
+ComPtr<ID3D11PixelShader> pixelShader;
+ComPtr<ID3D11InputLayout> inputLayout;
+
+HWND hWnd;
+
+struct Vertex
+{
+    XMFLOAT3 pos;
+};
+
+void InitDevice();
+void Render();
+
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
@@ -40,22 +109,33 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DX1600));
 
-    MSG msg;
+    // 생성
+    InitDevice();
+
+    MSG msg = {};
 
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (msg.message != WM_QUIT)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else
+        {
+            // 메인루프
+            Render();
         }
     }
 
+    // 삭제
+
     return (int) msg.wParam;
 }
-
-
 
 //
 //  함수: MyRegisterClass()
@@ -97,7 +177,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+   hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
@@ -177,4 +257,91 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+void InitDevice()
+{
+    RECT rc;
+    GetClientRect(hWnd, &rc);
+    UINT width = rc.right - rc.left;
+    UINT height = rc.bottom - rc.top;
+
+    D3D_FEATURE_LEVEL featureLevels[] = 
+    {
+        D3D_FEATURE_LEVEL_11_0,
+        D3D_FEATURE_LEVEL_10_1,
+        D3D_FEATURE_LEVEL_10_0
+    };
+
+    UINT featureSize = ARRAYSIZE(featureLevels);
+
+    DXGI_SWAP_CHAIN_DESC sd = {};
+    sd.BufferCount = 1;
+    sd.BufferDesc.Width = width;
+    sd.BufferDesc.Height = height;
+    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    sd.BufferDesc.RefreshRate.Numerator = 60;
+    sd.BufferDesc.RefreshRate.Denominator = 1;
+    // Numerator / Denominator => 화면 프레임 갱식 속도... FPS
+    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+    sd.OutputWindow = hWnd;
+    sd.SampleDesc.Count = 1;
+    sd.SampleDesc.Quality = 0;
+    sd.Windowed = true; // 창모드
+
+    D3D11CreateDeviceAndSwapChain
+    (
+        nullptr,
+        D3D_DRIVER_TYPE_HARDWARE,
+        0,
+        D3D11_CREATE_DEVICE_DEBUG,
+        featureLevels,
+        featureSize,
+        D3D11_SDK_VERSION,
+        &sd,
+        IN swapChain.GetAddressOf(),
+        IN device.GetAddressOf(),
+        nullptr,
+        IN deviceContext.GetAddressOf()
+    );
+
+    ComPtr<ID3D11Texture2D> backBuffer;
+
+    swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
+    device->CreateRenderTargetView(backBuffer.Get(), nullptr, renderTargetView.GetAddressOf());
+
+    deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), nullptr);
+
+    D3D11_VIEWPORT vp;
+    vp.Width = width;
+    vp.Height = height;
+    vp.MinDepth = 0.0f;
+    vp.MaxDepth = 1.0f;
+    vp.TopLeftX = 0;
+    vp.TopLeftY = 0;
+    deviceContext->RSSetViewports(1, &vp);
+
+    D3D11_INPUT_ELEMENT_DESC layOut[] =
+    {
+        {
+            "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,0,0,
+            D3D11_INPUT_PER_VERTEX_DATA, 0
+        }
+    };
+
+    UINT layoutSize = ARRAYSIZE(layOut);
+
+    DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
+
+    ComPtr<ID3DBlob> vertexBlob; // VertexShader 만들 때 필요한 얘
+
+    D3DCompileFromFile(L"Shader/TutorialShader.hlsl", nullptr, nullptr, "VS", "vs_5_0", flags, 0, vertexBlob.GetAddressOf(), nullptr);
+
+    device->CreateVertexShader(vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(), nullptr, vertexShader.GetAddressOf());
+
+    return;
+}
+
+void Render()
+{
 }
