@@ -73,6 +73,7 @@ HWND hWnd;
 struct Vertex
 {
     XMFLOAT3 pos;
+    XMFLOAT4 color;
 };
 
 void InitDevice();
@@ -329,6 +330,10 @@ void InitDevice()
         {
             "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,0,0,
             D3D11_INPUT_PER_VERTEX_DATA, 0
+        },
+        {
+            "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT,0,12,
+            D3D11_INPUT_PER_VERTEX_DATA, 0
         }
     };
 
@@ -351,9 +356,30 @@ void InitDevice()
 
     vector<Vertex> vertices;
 
-    vertices.push_back({XMFLOAT3(0.0f, 0.5f, 0.0f)}); // 위에 찍히는 점
-    vertices.push_back({XMFLOAT3(0.5f, -0.5f, 0.0f)}); // 오른쪽 아래
-    vertices.push_back({XMFLOAT3(-0.5f, -0.5f, 0.0f)}); // 왼쪽 아래
+    Vertex temp;
+    temp.pos = XMFLOAT3(-0.5 + 0.1f, 0.5f, 0.0f);
+    temp.color = XMFLOAT4(1.0f,0.0f,0.0f,1.0f);
+    vertices.push_back(temp);  // 왼쪽위
+
+    temp.pos = XMFLOAT3(0.5f + 0.1f, 0.5f, 0.0f);
+    temp.color = XMFLOAT4(0.7f, 0.6f, 1.0f, 1.0f);
+    vertices.push_back(temp); // 오른쪽 위
+
+    temp.pos = XMFLOAT3(0.5f + 0.1f, -0.5f, 0.0f);
+    temp.color = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+    vertices.push_back(temp); // 오른쪽 아래
+
+    temp.pos = XMFLOAT3(-0.5f, 0.5f, 0.0f);
+    temp.color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+    vertices.push_back(temp); // 왼쪽 위
+
+    temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
+    temp.color = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+    vertices.push_back(temp); // 오른쪽 아래
+
+    temp.pos = XMFLOAT3(-0.5f, -0.5f, 0.0f);
+    temp.color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+    vertices.push_back(temp); // 왼쪽 아래
 
     D3D11_BUFFER_DESC bd = {};
     bd.Usage = D3D11_USAGE_DEFAULT;
@@ -389,7 +415,7 @@ void Render()
     deviceContext->VSSetShader(vertexShader.Get(), nullptr, 0);
     deviceContext->PSSetShader(pixelShader.Get(), nullptr, 0);
 
-    deviceContext->Draw(3,0);
+    deviceContext->Draw(6,0);
 
     swapChain->Present(0,0);
 }

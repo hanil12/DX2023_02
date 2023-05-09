@@ -1,11 +1,26 @@
 
-
-float4 VS( float4 pos : POSITION ) : SV_POSITION // Symentic Name... SV -> SystemValue
+struct VertexInput
 {
-	return pos;
+	float4 pos : POSITION;
+	float4 color : COLOR;
+};
+
+struct PixelInput
+{
+	float4 pos : SV_POSITION;
+	float4 color: COLOR;
+};
+
+PixelInput VS(VertexInput input)
+{
+	PixelInput output;
+	output.pos = input.pos;
+	output.color = input.color;
+
+	return output;
 }
 
-float4 PS() : SV_TARGET
+float4 PS(PixelInput input) : SV_TARGET
 {
-	return float4(1.0f,1.0f,0.0f,1.0f);
+	return input.color;
 }
