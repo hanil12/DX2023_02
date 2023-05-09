@@ -61,8 +61,11 @@ ComPtr<ID3D11RenderTargetView> renderTargetView;
 // 그 외에... 최적화에 필요한 Shader(테셀레이션, Hull, Compute Shader)
 
 ComPtr<ID3D11Buffer> vertexBuffer; // 정점들을 담아놓는 버퍼
+// vs : 각 정점에 대응되는 계산식... World, View, Projection
 ComPtr<ID3D11VertexShader> vertexShader;
+// ps : 면에 해당하는 픽셀 계산식
 ComPtr<ID3D11PixelShader> pixelShader;
+// InputLayout : 정보의 배치
 ComPtr<ID3D11InputLayout> inputLayout;
 
 HWND hWnd;
@@ -339,9 +342,54 @@ void InitDevice()
 
     device->CreateVertexShader(vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(), nullptr, vertexShader.GetAddressOf());
 
+    device->CreateInputLayout(layOut, layoutSize, vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(), inputLayout.GetAddressOf());
+
+    ComPtr<ID3DBlob> pixelBlob;
+    D3DCompileFromFile(L"Shader/TutorialShader.hlsl", nullptr, nullptr, "PS", "ps_5_0", flags, 0, pixelBlob.GetAddressOf(), nullptr);
+
+    device->CreatePixelShader(pixelBlob->GetBufferPointer(), pixelBlob->GetBufferSize(), nullptr, pixelShader.GetAddressOf());
+
+    vector<Vertex> vertices;
+
+    vertices.push_back({XMFLOAT3(0.0f, 0.5f, 0.0f)}); // 위에 찍히는 점
+    vertices.push_back({XMFLOAT3(0.5f, -0.5f, 0.0f)}); // 오른쪽 아래
+    vertices.push_back({XMFLOAT3(-0.5f, -0.5f, 0.0f)}); // 왼쪽 아래
+
+    D3D11_BUFFER_DESC bd = {};
+    bd.Usage = D3D11_USAGE_DEFAULT;
+    bd.ByteWidth = sizeof(Vertex) * vertices.size();
+    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = vertices.data();
+
+    device->CreateBuffer(&bd, &initData, vertexBuffer.GetAddressOf());
+
     return;
 }
 
 void Render()
 {
+    FLOAT myColorR = 0.2f;
+    FLOAT myColorG = 0.2f;
+    FLOAT myColorB = 0.2f;
+
+    FLOAT clearColor[4] = {myColorR, myColorG, myColorB, 1.0f};
+
+    deviceContext->ClearRenderTargetView(renderTargetView.Get(), clearColor);
+
+    deviceContext->IASetInputLayout(inputLayout.Get());
+
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
+
+    deviceContext->IASetVertexBuffers(0,1, vertexBuffer.GetAddressOf(), &stride, &offset);
+    deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+    deviceContext->VSSetShader(vertexShader.Get(), nullptr, 0);
+    deviceContext->PSSetShader(pixelShader.Get(), nullptr, 0);
+
+    deviceContext->Draw(3,0);
+
+    swapChain->Present(0,0);
 }
