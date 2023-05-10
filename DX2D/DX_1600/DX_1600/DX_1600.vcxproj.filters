@@ -48,6 +48,9 @@
     <Image Include="DX_1600.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\Goomba.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\TutorialShader.hlsl" />
