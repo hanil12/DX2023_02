@@ -72,15 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,12 +151,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Device\Device.h" />
     <ClInclude Include="DX_1600.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Framework\Render\PixelShader.h" />
+    <ClInclude Include="Framework\Render\VertexLayOut.h" />
+    <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Framework\TextureMapping\SamplerState.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Framework\TextureMapping\SRV.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Scene\TutorialScene.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="Framework\Render\VertexBuffer.h" />
+    <ClInclude Include="Framework\Render\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Device\Device.cpp" />
     <ClCompile Include="DX_1600.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -164,6 +180,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">framework.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="Framework\Render\PixelShader.cpp" />
+    <ClCompile Include="Program\Program.cpp" />
+    <ClCompile Include="Framework\TextureMapping\SamplerState.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Framework\Render\VertexBuffer.cpp" />
+    <ClCompile Include="Framework\Render\VertexShader.cpp" />
+    <ClCompile Include="Framework\TextureMapping\SRV.cpp" />
+    <ClCompile Include="Scene\TutorialScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc" />
