@@ -60,6 +60,9 @@
     <ClInclude Include="Scene\TutorialScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Bagic\Quad.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX_1600.cpp">
@@ -95,6 +98,9 @@
     <ClCompile Include="Scene\TutorialScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Bagic\Quad.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc">
@@ -109,6 +115,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Resource\Goomba.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Zelda.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

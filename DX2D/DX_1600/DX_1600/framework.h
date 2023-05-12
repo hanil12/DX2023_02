@@ -50,6 +50,9 @@ using namespace Microsoft::WRL;
 #include "Framework/TextureMapping/SRV.h"
 #include "Framework/TextureMapping/SamplerState.h"
 
+// Object
+#include "Object/Bagic/Quad.h"
+
 // Scene
 #include "Scene/Scene.h"
 

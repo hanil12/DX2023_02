@@ -157,6 +157,7 @@
     <ClInclude Include="Framework\Render\PixelShader.h" />
     <ClInclude Include="Framework\Render\VertexLayOut.h" />
     <ClInclude Include="Program\Program.h" />
+    <ClInclude Include="Object\Bagic\Quad.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Framework\TextureMapping\SamplerState.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Framework\Render\PixelShader.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Framework\TextureMapping\SamplerState.cpp" />
+    <ClCompile Include="Object\Bagic\Quad.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Framework\Render\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Render\VertexShader.cpp" />
@@ -195,6 +197,7 @@
   <ItemGroup>
     <Image Include="DX_1600.ico" />
     <Image Include="Resource\Goomba.png" />
+    <Image Include="Resource\Zelda.png" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
