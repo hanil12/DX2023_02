@@ -19,6 +19,6 @@ void TutorialScene::Update()
 
 void TutorialScene::Render()
 {
-	_quad1->Render();
 	_quad2->Render();
+	_quad1->Render();
 }

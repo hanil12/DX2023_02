@@ -14,8 +14,11 @@ public:
 private:
 	// Á¤Á¡(pos, color, uv) 6°³
 	vector<Vertex> _vertices;
+	vector<UINT> _indices;
 
 	shared_ptr<VertexBuffer> _vertexBuffer;
+	shared_ptr<IndexBuffer> _indexBuffer;
+
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
 	shared_ptr<SRV> _srv;
