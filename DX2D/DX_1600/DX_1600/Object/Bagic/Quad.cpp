@@ -3,8 +3,8 @@
 
 Quad::Quad()
 {
-    _vs = make_shared<VertexShader>(L"Shader/TutorialShader.hlsl");
-    _ps = make_shared<PixelShader>(L"Shader/TutorialShader.hlsl");
+    _vs = make_shared<VertexShader>(L"Shader/TextureVS.hlsl");
+    _ps = make_shared<PixelShader>(L"Shader/TexturePS.hlsl");
 
     CreateVertices();
     _vertexBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex), _vertices.size(), 0);
@@ -13,8 +13,8 @@ Quad::Quad()
 
 Quad::Quad(wstring srvFile)
 {
-    _vs = make_shared<VertexShader>(L"Shader/TutorialShader.hlsl");
-    _ps = make_shared<PixelShader>(L"Shader/TutorialShader.hlsl");
+    _vs = make_shared<VertexShader>(L"Shader/TextureVS.hlsl");
+    _ps = make_shared<PixelShader>(L"Shader/TexturePS.hlsl");
 
     _srv = make_shared<SRV>(srvFile);
     _samplerState = make_shared<SamplerState>();
@@ -51,8 +51,8 @@ void Quad::CreateVertices()
 {
     Vertex temp;
     Vector2 halfSize;
-    halfSize.x = (_srv->GetImageSize().x / WIN_WIDTH) * 0.5f;
-    halfSize.y = (_srv->GetImageSize().y / WIN_HEIGHT) * 0.5;
+    halfSize.x = (_srv->GetImageSize().x) * 0.5f;
+    halfSize.y = (_srv->GetImageSize().y) * 0.5;
 
     temp.pos = XMFLOAT3(-halfSize.x, halfSize.y, 0.0f);
     temp.color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
