@@ -168,6 +168,7 @@
     <ClInclude Include="Framework\TextureMapping\SRV.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
+    <ClInclude Include="Framework\Math\Transform.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Framework\Render\VertexBuffer.h" />
     <ClInclude Include="Framework\Render\VertexShader.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Framework\Render\VertexShader.cpp" />
     <ClCompile Include="Framework\TextureMapping\SRV.cpp" />
     <ClCompile Include="Scene\TutorialScene.cpp" />
+    <ClCompile Include="Framework\Math\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc" />

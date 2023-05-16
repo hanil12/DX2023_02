@@ -14,8 +14,6 @@ ConstantBuffer::ConstantBuffer(void* data, UINT dataSize)
 	initData.pSysMem = _data;
 
 	DEVICE->CreateBuffer(&bd, &initData, _buffer.GetAddressOf());
-
-	Update();
 }
 
 ConstantBuffer::~ConstantBuffer()

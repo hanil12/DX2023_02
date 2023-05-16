@@ -11,8 +11,7 @@ private:
 	shared_ptr<Quad> _quad1;
 	shared_ptr<Quad> _quad2;
 
-	shared_ptr<MatrixBuffer> _world;
-	shared_ptr<MatrixBuffer> _view;
-	shared_ptr<MatrixBuffer> _projection;
+	float _angle1 = 0.0f;
+	float _angle2 = 0.0f;
 };
 

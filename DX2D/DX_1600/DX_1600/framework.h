@@ -42,6 +42,7 @@ using namespace Microsoft::WRL;
 
 // Math
 #include "Framework/Math/Vector2.h"
+#include "Framework/Math/Transform.h"
 
 //Render
 #include "Framework/Render/ConstantBuffer.h"
