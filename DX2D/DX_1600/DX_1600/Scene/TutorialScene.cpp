@@ -26,6 +26,9 @@ void TutorialScene::Update()
 	_quad1->GetTransform()->SetAngle(_angle1);
 	_quad2->GetTransform()->SetAngle(_angle2);
 
+	Vector2 temp = LERP(_quad2->GetTransform()->GetPos(), mousePos, 0.001f);
+	_quad2->GetTransform()->SetPosition(temp);
+
 	_quad1->Update();
 	_quad2->Update();
 }

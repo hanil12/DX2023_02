@@ -160,12 +160,14 @@
     <ClInclude Include="Framework\Render\PixelShader.h" />
     <ClInclude Include="Framework\Render\VertexLayOut.h" />
     <ClInclude Include="Framework\Render\IndexBuffer.h" />
+    <ClInclude Include="Object\SolarSystem\Planet.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Object\Bagic\Quad.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Framework\TextureMapping\SamplerState.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Framework\TextureMapping\SRV.h" />
+    <ClInclude Include="Scene\SolarSystem.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
@@ -190,6 +192,7 @@
     <ClCompile Include="Framework\Math\Vector2.cpp" />
     <ClCompile Include="Framework\Render\PixelShader.cpp" />
     <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
+    <ClCompile Include="Object\SolarSystem\Planet.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Framework\TextureMapping\SamplerState.cpp" />
     <ClCompile Include="Object\Bagic\Quad.cpp" />
@@ -199,13 +202,17 @@
     <ClCompile Include="Framework\TextureMapping\SRV.cpp" />
     <ClCompile Include="Scene\TutorialScene.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
+    <ClCompile Include="Scene\SolarSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="DX_1600.ico" />
+    <Image Include="Resource\earth.png" />
     <Image Include="Resource\Goomba.png" />
+    <Image Include="Resource\moon.png" />
+    <Image Include="Resource\sun.png" />
     <Image Include="Resource\Zelda.png" />
     <Image Include="small.ico" />
   </ItemGroup>

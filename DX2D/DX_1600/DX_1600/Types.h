@@ -8,3 +8,5 @@
 
 #define DEVICE	Device::GetInstance()->GetDevice()
 #define DC		Device::GetInstance()->GetDC()
+
+#define LERP(s,e,t) s + (e - s) * t
