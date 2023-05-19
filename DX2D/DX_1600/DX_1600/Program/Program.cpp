@@ -3,10 +3,11 @@
 
 #include "../Scene/TutorialScene.h"
 #include "../Scene/SolarSystem.h"
+#include "../Scene/DungreedScene.h"
 
-Program::Program()
+Program::Program() 
 {
-	_curScene = make_shared<SolarSystem>();
+	_curScene = make_shared<DungreedScene>();
 
 	_view = make_shared<MatrixBuffer>();
 	_projection = make_shared<MatrixBuffer>();
@@ -34,6 +35,9 @@ void Program::Render()
 
 	_view->SetVSBuffer(1);
 	_projection->SetVSBuffer(2);
+
+	ALPHA->SetState();
+
 	_curScene->Render();
 
 	Device::GetInstance()->Present();

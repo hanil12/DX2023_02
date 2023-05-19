@@ -31,7 +31,10 @@ void SolarSystem::Update()
 
 void SolarSystem::Render()
 {
+	ADDITIVE->SetState();
 	_sun->Render();
+
+	ALPHA->SetState();
 	_earth->Render();
 	_moon->Render();
 }

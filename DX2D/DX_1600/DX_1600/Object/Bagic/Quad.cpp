@@ -19,7 +19,6 @@ Quad::Quad(wstring srvFile)
     _ps = make_shared<PixelShader>(L"Shader/TexturePS.hlsl");
 
     _srv = make_shared<SRV>(srvFile);
-    _samplerState = make_shared<SamplerState>();
 
     CreateVertices();
     _vertexBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex), _vertices.size(), 0);
@@ -46,7 +45,8 @@ void Quad::Render()
     _vs->Set();
 
     _srv->Set(0);
-    _samplerState->Set(0);
+    SAMPLER->Set(0);
+
     _ps->Set();
 
     DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

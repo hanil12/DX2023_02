@@ -53,6 +53,8 @@ public:
 
         return sqrtf(powf(resultX, 2) + powf(resultY, 2));
     }
+    float Angle();
+
     int MahattanDistance(const Vector2& other) const;
     float Dot(const Vector2& other) const
     {

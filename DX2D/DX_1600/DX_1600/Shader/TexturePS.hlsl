@@ -11,5 +11,14 @@ struct PixelInput
 
 float4 PS(PixelInput input) : SV_TARGET
 {
-	return map.Sample(samp,input.uv);
+	float4 color = map.Sample(samp,input.uv);
+
+	float temp = color.x + color.y + color.z;
+
+	if (temp > 2.7f)
+	{
+		color.w = 0.0f;
+	}
+
+	return color;
 }
