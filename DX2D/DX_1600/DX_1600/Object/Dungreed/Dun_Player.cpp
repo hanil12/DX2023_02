@@ -57,14 +57,14 @@ void Dun_Player::Render()
 
 void Dun_Player::SetBowAngle()
 {
-	Vector2 playerToMouse = mousePos - GetPos();
+	Vector2 playerToMouse = MOUSE_POS - GetPos();
 	float angle = playerToMouse.Angle();
 	_bowSlot->SetAngle(angle);
 }
 
 void Dun_Player::Fire()
 {
-	Vector2 dir = mousePos - GetPos();
+	Vector2 dir = MOUSE_POS - GetPos();
 
 	auto bulletIter = std::find_if(_bullets.begin(), _bullets.end(), 
 	[](const shared_ptr<Dun_Bullet> obj)-> bool { return !obj->_isActive; });

@@ -15,6 +15,18 @@ DungreedScene::~DungreedScene()
 
 void DungreedScene::Update()
 {
+	if(KEY_PRESS('A'))
+	{
+		Vector2 curPos = _player->GetPos();
+		_player->Move(curPos + Vector2(-0.1f,0.0f));
+	}
+
+	if (KEY_PRESS('D'))
+	{
+		Vector2 curPos = _player->GetPos();
+		_player->Move(curPos + Vector2(0.1f, 0.0f));
+	}
+
 	_player->Update();
 }
 

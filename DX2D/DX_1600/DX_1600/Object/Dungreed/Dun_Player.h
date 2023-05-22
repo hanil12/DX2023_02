@@ -9,6 +9,8 @@ public:
 	void Render();
 
 	void SetBowAngle();
+
+	void Move(Vector2 pos) { _quad->GetTransform()->SetPosition(pos); }
 	const Vector2& GetPos() { return _quad->GetTransform()->GetPos(); }
 
 	void Fire();

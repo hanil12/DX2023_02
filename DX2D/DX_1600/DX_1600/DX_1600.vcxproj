@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Framework\TextureMapping\BlendState.h" />
+    <ClInclude Include="Framework\Utility\InputManager.h" />
     <ClInclude Include="Object\Dungreed\Dun_Bullet.h" />
     <ClInclude Include="Object\Dungreed\Dun_Player.h" />
     <ClInclude Include="Scene\DungreedScene.h" />
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\TextureMapping\BlendState.cpp" />
+    <ClCompile Include="Framework\Utility\InputManager.cpp" />
     <ClCompile Include="Object\Dungreed\Dun_Bullet.cpp" />
     <ClCompile Include="Object\Dungreed\Dun_Player.cpp" />
     <ClCompile Include="Scene\DungreedScene.cpp" />
