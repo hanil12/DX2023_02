@@ -44,7 +44,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 생성
     Device::Create();
+
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+
+    ImGui_ImplWin32_Init(hWnd);
+    ImGui_ImplDX11_Init(DEVICE.Get(), DC.Get());
+
     InputManager::Create();
+    Timer::Create();
     StateManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
@@ -74,7 +82,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 삭제
     StateManager::Delete();
+    Timer::Delete();
     InputManager::Delete();
+
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
+
     Device::Delete();
 
     return (int) msg.wParam;
@@ -146,8 +160,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    if(ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+        return true;
+
     switch (message)
     {
     case WM_COMMAND:

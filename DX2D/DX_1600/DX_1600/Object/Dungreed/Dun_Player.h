@@ -10,7 +10,8 @@ public:
 
 	void SetBowAngle();
 
-	void Move(Vector2 pos) { _quad->GetTransform()->SetPosition(pos); }
+	void SetPosition(Vector2 pos) { _quad->GetTransform()->SetPosition(pos); }
+	void Move(Vector2 movePos) { _quad->GetTransform()->AddVector2(movePos); }
 	const Vector2& GetPos() { return _quad->GetTransform()->GetPos(); }
 
 	void Fire();

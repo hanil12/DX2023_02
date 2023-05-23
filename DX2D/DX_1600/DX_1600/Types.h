@@ -22,4 +22,6 @@
 
 #define MOUSE_POS InputManager::GetInstance()->GetMousePos()
 
+#define DELTA_TIME Timer::GetInstance()->GetDeltaTime()
+
 #define LERP(s,e,t) s + (e - s) * t

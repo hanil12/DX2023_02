@@ -18,6 +18,8 @@ Program::Program()
 
 	_view->Update();
 	_projection->Update();
+
+	// Timer::GetInstance()->SetLockFPS(60.0);
 }
 
 Program::~Program()
@@ -27,6 +29,7 @@ Program::~Program()
 void Program::Update()
 {
 	InputManager::GetInstance()->Update();
+	Timer::GetInstance()->Update();
 
 	_curScene->Update();
 }
@@ -35,12 +38,23 @@ void Program::Render()
 {
 	Device::GetInstance()->Clear();
 
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
 	_view->SetVSBuffer(1);
 	_projection->SetVSBuffer(2);
 
 	ALPHA->SetState();
 
 	_curScene->Render();
+
+	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+
+	_curScene->PostRender();
+
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	Device::GetInstance()->Present();
 }

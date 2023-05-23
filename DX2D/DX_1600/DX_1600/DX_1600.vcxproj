@@ -177,6 +177,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
+    <ClInclude Include="Framework\Utility\Timer.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Framework\Render\VertexBuffer.h" />
     <ClInclude Include="Framework\Render\VertexShader.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="Framework\Math\Transform.cpp" />
     <ClCompile Include="Scene\SolarSystem.cpp" />
     <ClCompile Include="Framework\TextureMapping\StateManager.cpp" />
+    <ClCompile Include="Framework\Utility\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc" />
@@ -275,6 +277,9 @@
   <ItemGroup>
     <ProjectReference Include="..\DirextTex\DirectXTex_Desktop_2019_Win10.vcxproj">
       <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ImGUi\ImGUi.vcxproj">
+      <Project>{8d5d889c-6ee8-481c-b854-b8d4bfa699a8}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

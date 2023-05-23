@@ -30,6 +30,11 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
 
+// Imgui
+#include "../ImGUi/imgui.h"
+#include "../ImGUi/imgui_impl_win32.h"
+#include "../ImGUi/imgui_impl_dx11.h"
+
 using namespace std;
 using namespace DirectX;
 using namespace Microsoft::WRL;
@@ -46,6 +51,7 @@ using namespace Microsoft::WRL;
 
 // Utility
 #include "Framework/Utility/InputManager.h"
+#include "Framework/Utility/Timer.h"
 
 //Render
 #include "Framework/Render/ConstantBuffer.h"

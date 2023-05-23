@@ -16,7 +16,7 @@ void Dun_Bullet::Update()
 	if(!_isActive)
 		return;
 
-	_quad->GetTransform()->AddVector2(_dir * _speed);
+	_quad->GetTransform()->AddVector2(_dir * _speed * DELTA_TIME);
 
 	_quad->Update();
 }

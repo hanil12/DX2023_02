@@ -15,6 +15,6 @@ private:
 	shared_ptr<Quad> _quad;
 
 	Vector2 _dir = Vector2();
-	float _speed = 0.2f;
+	float _speed = 20.0f;
 };
 

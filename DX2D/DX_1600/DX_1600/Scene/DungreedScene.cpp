@@ -17,14 +17,14 @@ void DungreedScene::Update()
 {
 	if(KEY_PRESS('A'))
 	{
-		Vector2 curPos = _player->GetPos();
-		_player->Move(curPos + Vector2(-0.1f,0.0f));
+		Vector2 movePos = Vector2(-500.0f, 0.0f) * DELTA_TIME;
+		_player->Move(movePos);
 	}
 
 	if (KEY_PRESS('D'))
 	{
-		Vector2 curPos = _player->GetPos();
-		_player->Move(curPos + Vector2(0.1f, 0.0f));
+		Vector2 movePos = Vector2(500.0f, 0.0f) * DELTA_TIME;
+		_player->Move(movePos);
 	}
 
 	_player->Update();
@@ -33,4 +33,9 @@ void DungreedScene::Update()
 void DungreedScene::Render()
 {
 	_player->Render();
+}
+
+void DungreedScene::PostRender()
+{
+	ImGui::Text("mouseX : %d, mouseY : %d", (int)MOUSE_POS.x, (int)MOUSE_POS.y);
 }
