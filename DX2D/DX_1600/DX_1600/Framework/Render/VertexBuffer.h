@@ -2,7 +2,7 @@
 class VertexBuffer
 {
 public:
-	VertexBuffer(void* data, UINT stride, UINT count, UINT offset);
+	VertexBuffer(void* data, UINT stride, UINT count, UINT offset = 0);
 	~VertexBuffer();
 
 	void CreateVertexBuffer();

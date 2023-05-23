@@ -62,6 +62,9 @@ using namespace Microsoft::WRL;
 #include "Framework/Render/VertexShader.h"
 #include "Framework/Render/PixelShader.h"
 
+// Collider
+#include "Framework/Collider/RectCollider.h"
+
 // TextureMapping
 #include "Framework/TextureMapping/SRV.h"
 #include "Framework/TextureMapping/SamplerState.h"

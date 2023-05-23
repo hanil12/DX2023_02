@@ -25,5 +25,5 @@ void VertexBuffer::CreateVertexBuffer()
 
 void VertexBuffer::Set(int slot)
 {
-    DC->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &_stride, &_offset);
+    DC->IASetVertexBuffers(slot, 1, vertexBuffer.GetAddressOf(), &_stride, &_offset);
 }

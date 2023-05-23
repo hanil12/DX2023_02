@@ -15,7 +15,7 @@ public:
 
 private:
 	// Á¤Á¡(pos, color, uv) 6°³
-	vector<Vertex> _vertices;
+	vector<Vertex_Texture> _vertices;
 	vector<UINT> _indices;
 
 	shared_ptr<VertexBuffer> _vertexBuffer;
