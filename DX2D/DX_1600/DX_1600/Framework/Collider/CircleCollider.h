@@ -1,9 +1,9 @@
 #pragma once
-class RectCollider
+class CircleCollider
 {
 public:
-	RectCollider(Vector2 size);
-	~RectCollider();
+	CircleCollider(float radius);
+	~CircleCollider();
 
 	void Update();
 	void Render();
@@ -11,15 +11,21 @@ public:
 	void CreateData();
 	void CreateVertices();
 
-	void SetPosition(Vector2 pos) { _transform->SetPosition(pos); }
-
 	void SetRed() { _colorBuffer->SetColor(RED); _colorBuffer->Update(); }
 	void SetGreen() { _colorBuffer->SetColor(GREEN); _colorBuffer->Update(); }
 
-	void SetScale(Vector2 scale) { _transform->SetScale(scale); }
+	void SetPosition(Vector2 pos) { _transform->SetPosition(pos); }
+	Vector2 GetPos() { return _transform->GetPos(); }
+
+	bool IsCollision(shared_ptr<CircleCollider> other);
 
 	const shared_ptr<Transform> GetTransform() { return _transform; }
 	void SetParent(shared_ptr<Transform> transform) { _transform->SetParent(transform); }
+
+	// Rect와 공유하지 않는 함수
+	void SetScale(float value) { _transform->SetScale({value, value}); }
+	float GetRadius() { return _radius; }
+	float GetWorldRadius() { return _radius * _transform->GetWorldScale().x; }
 
 private:
 	vector<Vertex> _vertices;
@@ -28,10 +34,10 @@ private:
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
 
-	shared_ptr<Transform> _transform;
-
 	shared_ptr<ColorBuffer> _colorBuffer;
 
-	Vector2 _size;
+	shared_ptr<Transform> _transform;
+
+	float _radius;
 };
 

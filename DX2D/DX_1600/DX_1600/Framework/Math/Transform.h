@@ -25,6 +25,7 @@ public:
 	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
 
 	const Vector2& GetWorldPosition();
+	const Vector2& GetWorldScale();
 
 private:
 	shared_ptr<class MatrixBuffer> _matrixBuffer;

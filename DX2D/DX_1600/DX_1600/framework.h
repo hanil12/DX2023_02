@@ -64,6 +64,7 @@ using namespace Microsoft::WRL;
 
 // Collider
 #include "Framework/Collider/RectCollider.h"
+#include "Framework/Collider/CircleCollider.h"
 
 // TextureMapping
 #include "Framework/TextureMapping/SRV.h"
