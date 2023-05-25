@@ -1,43 +1,26 @@
 #pragma once
-class CircleCollider
+class CircleCollider : public Collider, public enable_shared_from_this<CircleCollider>
 {
 public:
 	CircleCollider(float radius);
-	~CircleCollider();
+	virtual ~CircleCollider();
 
-	void Update();
-	void Render();
+	virtual void Update() override;
+	virtual void Render() override;
 
-	void CreateData();
-	void CreateVertices();
+	virtual void CreateVertices() override;
 
-	void SetRed() { _colorBuffer->SetColor(RED); _colorBuffer->Update(); }
-	void SetGreen() { _colorBuffer->SetColor(GREEN); _colorBuffer->Update(); }
-
-	void SetPosition(Vector2 pos) { _transform->SetPosition(pos); }
-	Vector2 GetPos() { return _transform->GetPos(); }
-
-	bool IsCollision(shared_ptr<CircleCollider> other);
-
-	const shared_ptr<Transform> GetTransform() { return _transform; }
-	void SetParent(shared_ptr<Transform> transform) { _transform->SetParent(transform); }
-
-	// Rect와 공유하지 않는 함수
 	void SetScale(float value) { _transform->SetScale({value, value}); }
 	float GetRadius() { return _radius; }
 	float GetWorldRadius() { return _radius * _transform->GetWorldScale().x; }
 
+	virtual bool IsCollision(const Vector2& pos) override;
+	virtual bool IsCollision(shared_ptr<CircleCollider> other) override;
+	virtual bool IsCollision(shared_ptr<RectCollider> other) override;
+
+	virtual void Block(shared_ptr<CircleCollider> movable);
+
 private:
-	vector<Vertex> _vertices;
-	shared_ptr<VertexBuffer> _vertexBuffer;
-
-	shared_ptr<VertexShader> _vs;
-	shared_ptr<PixelShader> _ps;
-
-	shared_ptr<ColorBuffer> _colorBuffer;
-
-	shared_ptr<Transform> _transform;
-
 	float _radius;
 };
 

@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Collider\Collider.h" />
     <ClInclude Include="Framework\Collider\CircleCollider.h" />
     <ClInclude Include="Framework\Collider\RectCollider.h" />
     <ClInclude Include="Scene\ColliderScene.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Framework\Render\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Collider\Collider.cpp" />
     <ClCompile Include="Framework\Collider\CircleCollider.cpp" />
     <ClCompile Include="Framework\Collider\RectCollider.cpp" />
     <ClCompile Include="Scene\ColliderScene.cpp" />

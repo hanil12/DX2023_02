@@ -1,37 +1,34 @@
 #pragma once
-class RectCollider
+class RectCollider : public Collider
 {
+private:
+	struct AABBRectInfo
+	{
+		float left = 0.0f;
+		float top = 0.0f;
+		float right = 0.0f;
+		float bottom = 0.0f;
+	};
+
 public:
 	RectCollider(Vector2 size);
-	~RectCollider();
+	virtual ~RectCollider();
 
-	void Update();
-	void Render();
+	virtual void Update() override;
+	virtual void Render() override;
 
-	void CreateData();
-	void CreateVertices();
+	virtual void CreateVertices() override;
 
-	void SetPosition(Vector2 pos) { _transform->SetPosition(pos); }
-
-	void SetRed() { _colorBuffer->SetColor(RED); _colorBuffer->Update(); }
-	void SetGreen() { _colorBuffer->SetColor(GREEN); _colorBuffer->Update(); }
+	Vector2 GetWorldSize();
 
 	void SetScale(Vector2 scale) { _transform->SetScale(scale); }
 
-	const shared_ptr<Transform> GetTransform() { return _transform; }
-	void SetParent(shared_ptr<Transform> transform) { _transform->SetParent(transform); }
+	struct AABBRectInfo GetAABBInfo();
 
+	virtual bool IsCollision(const Vector2& pos) override;
+	virtual bool IsCollision(shared_ptr<class CircleCollider> other) override;
+	virtual bool IsCollision(shared_ptr<RectCollider> other) override;
 private:
-	vector<Vertex> _vertices;
-	shared_ptr<VertexBuffer> _vertexBuffer;
-
-	shared_ptr<VertexShader> _vs;
-	shared_ptr<PixelShader> _ps;
-
-	shared_ptr<Transform> _transform;
-
-	shared_ptr<ColorBuffer> _colorBuffer;
-
 	Vector2 _size;
 };
 
