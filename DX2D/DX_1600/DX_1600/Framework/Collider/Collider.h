@@ -33,6 +33,8 @@ public:
 	const shared_ptr<Transform> GetTransform() { return _transform; }
 	void SetParent(shared_ptr<Transform> transform) { _transform->SetParent(transform); }
 
+
+
 protected:
 	ColType _type;
 

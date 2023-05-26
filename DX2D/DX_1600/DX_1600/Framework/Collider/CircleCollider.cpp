@@ -48,10 +48,10 @@ bool CircleCollider::IsCollision(shared_ptr<RectCollider> other)
 	return other->IsCollision(shared_from_this());
 }
 
-void CircleCollider::Block(shared_ptr<CircleCollider> movable)
+bool CircleCollider::Block(shared_ptr<CircleCollider> movable)
 {
 	if(!IsCollision(movable))
-		return;
+		return false;
 
 	Vector2 moveableCenter = movable->GetTransform()->GetWorldPosition();
 	Vector2 blockCenter = GetTransform()->GetWorldPosition();
@@ -60,6 +60,8 @@ void CircleCollider::Block(shared_ptr<CircleCollider> movable)
 	dir.Normallize();
 
 	movable->GetTransform()->AddVector2(dir * scalar);
+
+	return true;
 }
 
 bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
