@@ -43,7 +43,26 @@ bool CircleCollider::IsCollision(const Vector2& pos)
 	return distance < GetWorldRadius();
 }
 
-bool CircleCollider::IsCollision(shared_ptr<RectCollider> other)
+bool CircleCollider::IsCollision(shared_ptr<RectCollider> other, bool isObb)
+{
+	if(isObb)
+		return OBB_Collision(other);
+	return AABB_Collision(other);
+}
+
+bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other, bool isObb)
+{
+	if (isObb)
+		return OBB_Collision(other);
+	return AABB_Collision(other);
+}
+
+bool CircleCollider::OBB_Collision(shared_ptr<CircleCollider> other)
+{
+	return AABB_Collision(other);
+}
+
+bool CircleCollider::OBB_Collision(shared_ptr<RectCollider> other)
 {
 	return other->IsCollision(shared_from_this());
 }
@@ -64,7 +83,12 @@ bool CircleCollider::Block(shared_ptr<CircleCollider> movable)
 	return true;
 }
 
-bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
+bool CircleCollider::AABB_Collision(shared_ptr<RectCollider> other)
+{
+	return other->IsCollision(shared_from_this());
+}
+
+bool CircleCollider::AABB_Collision(shared_ptr<CircleCollider> other)
 {
 	Vector2 center1 = _transform->GetWorldPosition();
 	Vector2 center2 = other->_transform->GetWorldPosition();
@@ -75,4 +99,41 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 	float radius2 = other->GetWorldRadius();
 
 	return distance < GetWorldRadius() + other->GetWorldRadius();
+}
+
+bool CircleCollider::Block(shared_ptr<RectCollider> movable)
+{
+	if (!IsCollision(movable))
+		return false;
+
+	Vector2 virtualHalfSize = Vector2(GetWorldRadius(), GetWorldRadius());
+	Vector2 dir = movable->GetTransform()->GetWorldPosition() - _transform->GetWorldPosition();
+	Vector2 sum = virtualHalfSize + movable->GetWorldSize() * 0.5f;
+	Vector2 overlap = Vector2(sum.x - abs(dir.x), sum.y - abs(dir.y));
+
+	Vector2 fixedPos = movable->GetTransform()->GetPos();
+
+	dir.Normallize();
+	if (overlap.x > overlap.y)
+	{
+		if (dir.y < 0.0f)
+			dir.y = -1.0f;
+		else if (dir.y > 0.0f)
+			dir.y = 1.0f;
+
+		fixedPos.y += dir.y * overlap.y;
+	}
+	else
+	{
+		if (dir.x < 0.0f)
+			dir.x = -1.0f;
+		else if (dir.x > 0.0f)
+			dir.x = 1.0f;
+
+		fixedPos.x += dir.x * overlap.x;
+	}
+
+	movable->GetTransform()->SetPosition(fixedPos);
+
+	return true;
 }

@@ -17,20 +17,33 @@ ColliderScene::~ColliderScene()
 {
 }
 
-void ColliderScene::Update()
+void ColliderScene::Collider_Update()
 {
 	_rectCollider->Update();
 	_rectCollider2->Update();
 	_circleCollider->Update();
 	_circleCollider2->Update();
+}
 
-	_circleCollider->SetPosition(MOUSE_POS);
+void ColliderScene::Update()
+{
 	_rectCollider2->SetPosition(MOUSE_POS);
 
-	if (_rectCollider2->Block(_circleCollider2))
-		_circleCollider2->SetRed();
+	if(KEY_PRESS('W'))
+		_rectCollider2->GetTransform()->AddAngle(5.0f * DELTA_TIME);
+	if(KEY_PRESS('D'))
+		_rectCollider2->GetTransform()->AddScale(Vector2(1,0) * DELTA_TIME);
+
+	if (_rectCollider2->IsCollision(_rectCollider, true))
+	{
+		_rectCollider->SetRed();
+		_rectCollider2->SetRed();
+	}
 	else
-		_circleCollider2->SetGreen();
+	{
+		_rectCollider->SetGreen();
+		_rectCollider2->SetGreen();
+	}
 }
 
 void ColliderScene::Render()

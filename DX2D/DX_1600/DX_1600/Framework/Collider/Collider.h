@@ -19,10 +19,12 @@ public:
 	void CreateData();
 	virtual void CreateVertices() abstract;
 
-	bool IsCollision(shared_ptr<Collider> other);
+	bool IsCollision(shared_ptr<Collider> other, bool isObb = false);
+	bool Block(shared_ptr<Collider> other);
+
 	virtual bool IsCollision(const Vector2& pos) abstract;
-	virtual bool IsCollision(shared_ptr<class CircleCollider> other) abstract;
-	virtual bool IsCollision(shared_ptr<class RectCollider> other) abstract;
+	virtual bool IsCollision(shared_ptr<class CircleCollider> other, bool isObb = false) abstract;
+	virtual bool IsCollision(shared_ptr<class RectCollider> other, bool isObb = false) abstract;
 
 	void SetRed() { _colorBuffer->SetColor(RED); _colorBuffer->Update(); }
 	void SetGreen() { _colorBuffer->SetColor(GREEN); _colorBuffer->Update(); }
@@ -33,9 +35,13 @@ public:
 	const shared_ptr<Transform> GetTransform() { return _transform; }
 	void SetParent(shared_ptr<Transform> transform) { _transform->SetParent(transform); }
 
-
-
 protected:
+	virtual bool AABB_Collision(shared_ptr<class CircleCollider> other) abstract;
+	virtual bool AABB_Collision(shared_ptr<class RectCollider> other) abstract;
+
+	virtual bool OBB_Collision(shared_ptr<class CircleCollider> other) abstract;
+	virtual bool OBB_Collision(shared_ptr<class RectCollider> other) abstract;
+
 	ColType _type;
 
 	vector<Vertex> _vertices;

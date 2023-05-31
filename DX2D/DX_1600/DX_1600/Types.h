@@ -33,3 +33,9 @@
 #define DELTA_TIME Timer::GetInstance()->GetDeltaTime()
 
 #define LERP(s,e,t) s + (e - s) * t
+
+struct Hit_Result
+{
+	bool isCollision = false;
+	vector<Vector2> contact;
+};

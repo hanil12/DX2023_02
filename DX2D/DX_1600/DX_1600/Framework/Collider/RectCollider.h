@@ -34,14 +34,28 @@ public:
 	OBBRectInfo GetOBBInfo();
 
 	virtual bool IsCollision(const Vector2& pos) override;
-	virtual bool IsCollision(shared_ptr<class CircleCollider> other) override;
-	virtual bool IsCollision(shared_ptr<RectCollider> other) override;
+	virtual bool IsCollision(shared_ptr<class CircleCollider> other, bool isObb = false) override;
+	virtual bool IsCollision(shared_ptr<RectCollider> other, bool isObb = false) override;
 
 	// Matrix 상속 걸려있는 구조에서 X
 	bool Block(shared_ptr<RectCollider> movable);
 	bool Block(shared_ptr<class CircleCollider> movable);
 
 private:
+	virtual bool AABB_Collision(shared_ptr<RectCollider> other) override final;
+	virtual bool AABB_Collision(shared_ptr<CircleCollider> other) override final;
+
+	virtual bool OBB_Collision(shared_ptr<RectCollider> other) override final;
+	virtual bool OBB_Collision(shared_ptr<CircleCollider> other) override final;
+
+	float SeparateAxis(Vector2 separate, Vector2 e1, Vector2 e2)
+	{
+		float r1 = abs(separate.Dot(e1));
+		float r2 = abs(separate.Dot(e2));
+
+		return r1 + r2;
+	}
+
 	Vector2 _size;
 };
 

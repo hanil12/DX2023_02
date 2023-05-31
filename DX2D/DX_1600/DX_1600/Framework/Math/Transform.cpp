@@ -45,7 +45,14 @@ Vector2 Transform::GetWorldPosition()
 Vector2 Transform::GetWorldScale()
 {
 	XMFLOAT4X4 temp;
-	XMStoreFloat4x4(&temp, _srt);
+	XMStoreFloat4x4(&temp, _scaleM);
+
+	if (_parent.expired() == false)
+	{
+		Vector2 parentScale = _parent.lock()->GetWorldScale();
+
+		return Vector2(temp._11 * parentScale.x, temp._22 * parentScale.y);
+	}
 
 	return Vector2(temp._11, temp._22);
 }

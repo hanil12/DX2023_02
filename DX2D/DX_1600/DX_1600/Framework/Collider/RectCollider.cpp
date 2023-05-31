@@ -78,6 +78,9 @@ RectCollider::OBBRectInfo RectCollider::GetOBBInfo()
     info.direction[0] = { matrix._11, matrix._12 };
     info.direction[1] = { matrix._21, matrix._22 };
 
+    info.direction[0].Normallize();
+    info.direction[1].Normallize();
+
     info.length[0] = GetWorldSize().x * 0.5f;
     info.length[1] = GetWorldSize().y * 0.5f;
 
@@ -96,46 +99,79 @@ bool RectCollider::IsCollision(const Vector2& pos)
     return true;
 }
 
-bool RectCollider::IsCollision(shared_ptr<CircleCollider> other)
+bool RectCollider::IsCollision(shared_ptr<CircleCollider> other, bool isObb)
 {
-    AABBRectInfo info = GetAABBInfo();
-
-    Vector2 leftTop = Vector2(info.left, info.top);
-    Vector2 leftBottom = Vector2(info.left, info.bottom);
-    Vector2 rightTop = Vector2(info.right, info.top);
-    Vector2 rightBottom = Vector2(info.right, info.bottom);
-
-    if (other->IsCollision(leftTop) || other->IsCollision(leftBottom) ||
-        other->IsCollision(rightTop) || other->IsCollision(rightBottom))
-        return true;
-
-    if (info.right > other->GetTransform()->GetWorldPosition().x && info.left < other->GetTransform()->GetWorldPosition().x)
-    {
-        if (info.top + other->GetWorldRadius() > other->GetTransform()->GetWorldPosition().y
-            && info.bottom - other->GetWorldRadius() < other->GetTransform()->GetWorldPosition().y)
-            return true;
-    }
-    if (info.bottom < other->GetTransform()->GetWorldPosition().y && info.top > other->GetTransform()->GetWorldPosition().y)
-    {
-        if (info.left - other->GetWorldRadius() < other->GetTransform()->GetWorldPosition().x
-            && info.right + other->GetWorldRadius() > other->GetTransform()->GetWorldPosition().x)
-            return true;
-    }
-
-    return false;
+    if(isObb)
+        return OBB_Collision(other);
+    return AABB_Collision(other);
 }
 
-bool RectCollider::IsCollision(shared_ptr<RectCollider> other)
+bool RectCollider::IsCollision(shared_ptr<RectCollider> other, bool isObb)
 {
-    Vector2 center1 = _transform->GetWorldPosition();
-    Vector2 center2 = other->GetTransform()->GetWorldPosition();
-    Vector2 distance = (this->GetWorldSize() + other->GetWorldSize()) * 0.5f;
-    if (abs(center1.x - center2.x) > distance.x)
+    if (isObb)
+        return OBB_Collision(other);
+    return AABB_Collision(other);
+}
+
+bool RectCollider::OBB_Collision(shared_ptr<RectCollider> other)
+{
+    OBBRectInfo infoA = GetOBBInfo();
+    OBBRectInfo infoB = other->GetOBBInfo();
+
+    Vector2 aToB = infoB.worldPos - infoA.worldPos;
+
+    // n : normal... 길이가 1인 벡터
+    // e : edge... 모서리
+    Vector2 nea1 = infoA.direction[0];
+    Vector2 ea1 = infoA.direction[0] * infoA.length[0];
+    Vector2 nea2 = infoA.direction[1];
+    Vector2 ea2 = infoA.direction[1] * infoA.length[1];
+
+    Vector2 neb1 = infoB.direction[0];
+    Vector2 eb1 = infoB.direction[0] * infoB.length[0];
+    Vector2 neb2 = infoB.direction[1];
+    Vector2 eb2 = infoB.direction[1] * infoB.length[1];
+
+    // nea1축으로 투영
+    float length = abs(nea1.Dot(aToB));
+    float lengthA = ea1.Length();
+    float lengthB = SeparateAxis(nea1,eb1,eb2);
+
+    if(length > lengthA + lengthB)
         return false;
-    else if (abs(center1.y - center2.y) > distance.y)
+
+    // nea2축으로 투영
+    length = abs(nea2.Dot(aToB));
+    lengthA = ea2.Length();
+    lengthB = SeparateAxis(nea2,eb1,eb2);
+
+    if (length > lengthA + lengthB)
         return false;
-    else
-        return true;
+
+    // neb1축으로 투영
+    length = abs(neb1.Dot(aToB));
+    lengthA = SeparateAxis(neb1, ea1, ea2);
+    lengthB = eb1.Length();
+
+    if (length > lengthA + lengthB)
+        return false;
+
+    // neb2축으로 투영
+    length = abs(neb2.Dot(aToB));
+    lengthA = SeparateAxis(neb2, ea1, ea2);
+    lengthB = eb2.Length();
+
+    if (length > lengthA + lengthB)
+        return false;
+
+    return true;
+}
+
+bool RectCollider::OBB_Collision(shared_ptr<CircleCollider> other)
+{
+    // TODO
+
+    return false;
 }
 
 bool RectCollider::Block(shared_ptr<RectCollider> movable)
@@ -172,6 +208,48 @@ bool RectCollider::Block(shared_ptr<RectCollider> movable)
     movable->GetTransform()->SetPosition(fixedPos);
 
     return true;
+}
+
+bool RectCollider::AABB_Collision(shared_ptr<RectCollider> other)
+{
+    Vector2 center1 = _transform->GetWorldPosition();
+    Vector2 center2 = other->GetTransform()->GetWorldPosition();
+    Vector2 distance = (this->GetWorldSize() + other->GetWorldSize()) * 0.5f;
+    if (abs(center1.x - center2.x) > distance.x)
+        return false;
+    else if (abs(center1.y - center2.y) > distance.y)
+        return false;
+    else
+        return true;
+}
+
+bool RectCollider::AABB_Collision(shared_ptr<CircleCollider> other)
+{
+    AABBRectInfo info = GetAABBInfo();
+
+    Vector2 leftTop = Vector2(info.left, info.top);
+    Vector2 leftBottom = Vector2(info.left, info.bottom);
+    Vector2 rightTop = Vector2(info.right, info.top);
+    Vector2 rightBottom = Vector2(info.right, info.bottom);
+
+    if (other->IsCollision(leftTop) || other->IsCollision(leftBottom) ||
+        other->IsCollision(rightTop) || other->IsCollision(rightBottom))
+        return true;
+
+    if (info.right > other->GetTransform()->GetWorldPosition().x && info.left < other->GetTransform()->GetWorldPosition().x)
+    {
+        if (info.top + other->GetWorldRadius() > other->GetTransform()->GetWorldPosition().y
+            && info.bottom - other->GetWorldRadius() < other->GetTransform()->GetWorldPosition().y)
+            return true;
+    }
+    if (info.bottom < other->GetTransform()->GetWorldPosition().y && info.top > other->GetTransform()->GetWorldPosition().y)
+    {
+        if (info.left - other->GetWorldRadius() < other->GetTransform()->GetWorldPosition().x
+            && info.right + other->GetWorldRadius() > other->GetTransform()->GetWorldPosition().x)
+            return true;
+    }
+
+    return false;
 }
 
 bool RectCollider::Block(shared_ptr<CircleCollider> movable)
