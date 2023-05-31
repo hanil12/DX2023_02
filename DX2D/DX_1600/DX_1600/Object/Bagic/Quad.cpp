@@ -56,26 +56,25 @@ void Quad::Render()
 void Quad::CreateVertices()
 {
     Vertex_Texture temp;
-    Vector2 halfSize;
-    halfSize.x = (_srv->GetImageSize().x) * 0.5f;
-    halfSize.y = (_srv->GetImageSize().y) * 0.5;
+    _halfSize.x = (_srv->GetImageSize().x) * 0.5f;
+    _halfSize.y = (_srv->GetImageSize().y) * 0.5;
 
-    temp.pos = XMFLOAT3(-halfSize.x, halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(-_halfSize.x, _halfSize.y, 0.0f);
     temp.color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
     temp.uv = { 0.0f, 0.0f };
     _vertices.push_back(temp);  // 왼쪽위
 
-    temp.pos = XMFLOAT3(halfSize.x, halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(_halfSize.x, _halfSize.y, 0.0f);
     temp.color = XMFLOAT4(0.7f, 0.6f, 1.0f, 1.0f);
     temp.uv = { 1.0f, 0.0f };
     _vertices.push_back(temp); // 오른쪽 위
 
-    temp.pos = XMFLOAT3(halfSize.x, -halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(_halfSize.x, -_halfSize.y, 0.0f);
     temp.color = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
     temp.uv = { 1.0f,1.0f };
     _vertices.push_back(temp); // 오른쪽 아래
 
-    temp.pos = XMFLOAT3(-halfSize.x, -halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(-_halfSize.x, -_halfSize.y, 0.0f);
     temp.color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
     temp.uv = { 0.0f, 1.0f };
     _vertices.push_back(temp); // 왼쪽 아래

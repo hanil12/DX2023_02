@@ -3,20 +3,22 @@ class Dun_Player
 {
 public:
 	Dun_Player();
-	~Dun_Player();
+	virtual ~Dun_Player();
 
-	void Update();
-	void Render();
+	virtual void Update() abstract;
+	virtual void Render();
 
 	void SetBowAngle();
 
-	void SetPosition(Vector2 pos) { _quad->GetTransform()->SetPosition(pos); }
-	void Move(Vector2 movePos) { _quad->GetTransform()->AddVector2(movePos); }
-	const Vector2& GetPos() { return _quad->GetTransform()->GetPos(); }
+	virtual void SetPosition(Vector2 pos) { _quad->GetTransform()->SetPosition(pos); }
+	virtual void Move(Vector2 movePos) { _quad->GetTransform()->AddVector2(movePos); }
+	virtual const Vector2& GetPos() { return _quad->GetTransform()->GetPos(); }
+
+	bool IsCollision_Bullets(shared_ptr<Collider> col);
 
 	void Fire();
 
-private:
+protected:
 	shared_ptr<Quad> _quad;
 
 	shared_ptr<Transform> _bowSlot;

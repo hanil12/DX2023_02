@@ -6,7 +6,6 @@
 Dun_Player::Dun_Player()
 {
 	_quad = make_shared<Quad>(L"Resource/Player.png");
-	_quad->GetTransform()->SetPosition(Vector2(100,100));
 
 	_bowSlot = make_shared<Transform>();
 
@@ -60,6 +59,23 @@ void Dun_Player::SetBowAngle()
 	Vector2 playerToMouse = MOUSE_POS - GetPos();
 	float angle = playerToMouse.Angle();
 	_bowSlot->SetAngle(angle);
+}
+
+bool Dun_Player::IsCollision_Bullets(shared_ptr<Collider> col)
+{
+	for (auto bullet : _bullets)
+	{
+		if(bullet->_isActive == false)
+			continue;
+
+		if (col->IsCollision(bullet->GetCollider()))
+		{
+			bullet->_isActive = false;
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void Dun_Player::Fire()

@@ -8,7 +8,7 @@
 
 Program::Program() 
 {
-	_curScene = make_shared<ColliderScene>();
+	_curScene = make_shared<DungreedScene>();
 
 	_view = make_shared<MatrixBuffer>();
 	_projection = make_shared<MatrixBuffer>();
@@ -32,6 +32,7 @@ void Program::Update()
 	InputManager::GetInstance()->Update();
 	Timer::GetInstance()->Update();
 
+	_curScene->Collider_Update();
 	_curScene->Update();
 }
 
