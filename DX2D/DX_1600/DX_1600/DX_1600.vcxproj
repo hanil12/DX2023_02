@@ -180,6 +180,8 @@
     <ClInclude Include="Framework\TextureMapping\SRV.h" />
     <ClInclude Include="Scene\SolarSystem.h" />
     <ClInclude Include="Framework\TextureMapping\StateManager.h" />
+    <ClInclude Include="Framework\Render\ShaderManager.h" />
+    <ClInclude Include="Framework\Render\Shader.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
@@ -229,6 +231,8 @@
     <ClCompile Include="Scene\SolarSystem.cpp" />
     <ClCompile Include="Framework\TextureMapping\StateManager.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
+    <ClCompile Include="Framework\Render\ShaderManager.cpp" />
+    <ClCompile Include="Framework\Render\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc" />

@@ -6,11 +6,12 @@ public:
 	~Transform();
 
 	void Update();
+	void Update_SRT();
 	void SetBuffer(UINT slot);
 
-	void SetScale(Vector2 scale) { _scale = scale; }
-	void SetAngle(float angle) { _angle = angle; }
-	void SetPosition(Vector2 pos) { _pos = pos; }
+	void SetScale(Vector2 scale) { _scale = scale; Update_SRT(); }
+	void SetAngle(float angle) { _angle = angle; Update_SRT(); }
+	void SetPosition(Vector2 pos) { _pos = pos; Update_SRT(); }
 
 	void AddScale(Vector2 value) { _scale += value; }
 	void AddAngle(float value) { _angle += value; }

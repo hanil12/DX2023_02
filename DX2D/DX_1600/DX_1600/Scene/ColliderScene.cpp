@@ -34,15 +34,15 @@ void ColliderScene::Update()
 	if(KEY_PRESS('D'))
 		_rectCollider2->GetTransform()->AddScale(Vector2(1,0) * DELTA_TIME);
 
-	if (_rectCollider2->IsCollision(_rectCollider, true))
+	if (_rectCollider2->IsCollision(_circleCollider2, true))
 	{
 		_rectCollider->SetRed();
-		_rectCollider2->SetRed();
+		_circleCollider2->SetRed();
 	}
 	else
 	{
 		_rectCollider->SetGreen();
-		_rectCollider2->SetGreen();
+		_circleCollider2->SetGreen();
 	}
 }
 

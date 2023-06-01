@@ -32,6 +32,9 @@
 
 #define DELTA_TIME Timer::GetInstance()->GetDeltaTime()
 
+#define ADD_VS(k) ShaderManager::GetInstance()->AddVS(k)
+#define ADD_PS(k) ShaderManager::GetInstance()->AddPS(k)
+
 #define LERP(s,e,t) s + (e - s) * t
 
 struct Hit_Result

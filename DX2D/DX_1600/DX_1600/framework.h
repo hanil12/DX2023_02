@@ -59,8 +59,10 @@ using namespace Microsoft::WRL;
 #include "Framework/Render/VertexLayOut.h"
 #include "Framework/Render/VertexBuffer.h"
 #include "Framework/Render/IndexBuffer.h"
+#include "Framework/Render/Shader.h"
 #include "Framework/Render/VertexShader.h"
 #include "Framework/Render/PixelShader.h"
+#include "Framework/Render/ShaderManager.h"
 
 // Collider
 #include "Framework/Collider/Collider.h"

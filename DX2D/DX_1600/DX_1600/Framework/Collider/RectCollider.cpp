@@ -169,9 +169,38 @@ bool RectCollider::OBB_Collision(shared_ptr<RectCollider> other)
 
 bool RectCollider::OBB_Collision(shared_ptr<CircleCollider> other)
 {
-    // TODO
+    bool check = true;
 
-    return false;
+    OBBRectInfo infoA = GetOBBInfo();
+
+    Vector2 aToB = other->GetTransform()->GetWorldPosition() - infoA.worldPos;
+
+    // n : normal... 길이가 1인 벡터
+    // e : edge... 모서리
+    Vector2 nea1 = infoA.direction[0];
+    Vector2 ea1 = infoA.direction[0] * infoA.length[0];
+    Vector2 nea2 = infoA.direction[1];
+    Vector2 ea2 = infoA.direction[1] * infoA.length[1];
+
+    float d = sqrt(pow(infoA.length[0],2) + pow(infoA.length[1],2)) + other->GetWorldRadius();
+
+    if(aToB.Length() > d)
+        return false;
+
+    float length = abs(aToB.Dot(nea1));
+    float lengthA = ea1.Length();
+    float lengthB = other->GetWorldRadius();
+
+    if(length > lengthA + lengthB)
+        return false;
+
+    length = abs(aToB.Dot(nea2));
+    lengthA = ea2.Length();
+
+    if(length > lengthA + lengthB)
+        return false;
+
+    return true;
 }
 
 bool RectCollider::Block(shared_ptr<RectCollider> movable)
