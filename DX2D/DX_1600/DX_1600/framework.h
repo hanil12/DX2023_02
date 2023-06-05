@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <string>
 #include <memory>
+#include <functional>
 #include <wrl/client.h>
 
 #include <d3d11.h>

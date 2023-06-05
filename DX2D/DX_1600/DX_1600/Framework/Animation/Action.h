@@ -6,7 +6,7 @@ public:
 	{
 		Vector2 _startPos;
 		Vector2 _size;
-		shared_ptr<SRV> _srv;
+		weak_ptr<SRV> _srv;
 
 		Clip(float x, float y, float w, float h, shared_ptr<SRV> srv)
 		: _startPos(x,y)
@@ -38,6 +38,8 @@ public:
 	Action::Type GetRepeatType() { return _repeatType; }
 	bool IsPlay() { return _isPlay; }
 
+	void SetEndEvent(CallBack endEvent) { _endEvent = endEvent; }
+
 private:
 	string _name;
 	vector<Clip> _clips;
@@ -51,5 +53,7 @@ private:
 	float _speed = 0.0f;
 
 	bool _isReverse = false;
+
+	CallBack _endEvent = nullptr;
 };
 

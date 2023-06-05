@@ -9,6 +9,7 @@ public:
 	virtual void Render() override;
 
 	void SetCurFrame(Vector2 frame);
+	void SetCurFrame(Action::Clip clip);
 
 private:
 	shared_ptr<FrameBuffer> _frameBuffer;

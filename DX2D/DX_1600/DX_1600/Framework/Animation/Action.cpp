@@ -79,6 +79,9 @@ void Action::Stop()
 {
 	_isPlay = false;
 	_curClipIndex = 0;
+
+	if(_endEvent != nullptr)
+		_endEvent();
 }
 
 void Action::Reset()
