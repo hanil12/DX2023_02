@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "DungreedScene.h"
 
-#include "../Object/Dungreed/Dun_Player_Advanced.h"
-#include "../Object/Dungreed/Dun_Boss.h"
+#include "../../Object/Dungreed/Dun_Player_Advanced.h"
+#include "../../Object/Dungreed/Dun_Boss.h"
 
 DungreedScene::DungreedScene()
 {

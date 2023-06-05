@@ -76,6 +76,9 @@ using namespace Microsoft::WRL;
 #include "Framework/TextureMapping/BlendState.h"
 #include "Framework/TextureMapping/StateManager.h"
 
+// Animation
+#include "Framework/Animation/Action.h"
+
 // Object
 #include "Object/Bagic/Quad.h"
 #include "Object/Bagic/Sprite.h"

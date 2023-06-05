@@ -151,17 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\BagicScene\ActionScene.h" />
     <ClInclude Include="Object\Dungreed\Dun_Boss.h" />
     <ClInclude Include="Object\Dungreed\Dun_Player_Advanced.h" />
     <ClInclude Include="Framework\Collider\Collider.h" />
     <ClInclude Include="Framework\Collider\CircleCollider.h" />
     <ClInclude Include="Framework\Collider\RectCollider.h" />
-    <ClInclude Include="Scene\ColliderScene.h" />
+    <ClInclude Include="Scene\BagicScene\ColliderScene.h" />
     <ClInclude Include="Framework\TextureMapping\BlendState.h" />
     <ClInclude Include="Framework\Utility\InputManager.h" />
     <ClInclude Include="Object\Dungreed\Dun_Bullet.h" />
     <ClInclude Include="Object\Dungreed\Dun_Player.h" />
-    <ClInclude Include="Scene\DungreedScene.h" />
+    <ClInclude Include="Scene\BagicScene\DungreedScene.h" />
     <ClInclude Include="Framework\Render\ConstantBuffer.h" />
     <ClInclude Include="Framework\Device\Device.h" />
     <ClInclude Include="DX_1600.h" />
@@ -178,15 +179,15 @@
     <ClInclude Include="Framework\TextureMapping\SamplerState.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Framework\TextureMapping\SRV.h" />
-    <ClInclude Include="Scene\SolarSystem.h" />
+    <ClInclude Include="Scene\BagicScene\SolarSystem.h" />
     <ClInclude Include="Framework\TextureMapping\StateManager.h" />
     <ClInclude Include="Framework\Render\ShaderManager.h" />
     <ClInclude Include="Framework\Render\Shader.h" />
     <ClInclude Include="Framework\TextureMapping\SRVManager.h" />
     <ClInclude Include="Object\Bagic\Sprite.h" />
-    <ClInclude Include="Scene\SpriteScene.h" />
+    <ClInclude Include="Scene\BagicScene\SpriteScene.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Scene\TutorialScene.h" />
+    <ClInclude Include="Scene\BagicScene\TutorialScene.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
     <ClInclude Include="Types.h" />
@@ -194,17 +195,18 @@
     <ClInclude Include="Framework\Render\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\BagicScene\ActionScene.cpp" />
     <ClCompile Include="Object\Dungreed\Dun_Boss.cpp" />
     <ClCompile Include="Object\Dungreed\Dun_Player_Advanced.cpp" />
     <ClCompile Include="Framework\Collider\Collider.cpp" />
     <ClCompile Include="Framework\Collider\CircleCollider.cpp" />
     <ClCompile Include="Framework\Collider\RectCollider.cpp" />
-    <ClCompile Include="Scene\ColliderScene.cpp" />
+    <ClCompile Include="Scene\BagicScene\ColliderScene.cpp" />
     <ClCompile Include="Framework\TextureMapping\BlendState.cpp" />
     <ClCompile Include="Framework\Utility\InputManager.cpp" />
     <ClCompile Include="Object\Dungreed\Dun_Bullet.cpp" />
     <ClCompile Include="Object\Dungreed\Dun_Player.cpp" />
-    <ClCompile Include="Scene\DungreedScene.cpp" />
+    <ClCompile Include="Scene\BagicScene\DungreedScene.cpp" />
     <ClCompile Include="Framework\Render\ConstantBuffer.cpp" />
     <ClCompile Include="Framework\Device\Device.cpp" />
     <ClCompile Include="DX_1600.cpp" />
@@ -229,16 +231,16 @@
     <ClCompile Include="Framework\Render\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Render\VertexShader.cpp" />
     <ClCompile Include="Framework\TextureMapping\SRV.cpp" />
-    <ClCompile Include="Scene\TutorialScene.cpp" />
+    <ClCompile Include="Scene\BagicScene\TutorialScene.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
-    <ClCompile Include="Scene\SolarSystem.cpp" />
+    <ClCompile Include="Scene\BagicScene\SolarSystem.cpp" />
     <ClCompile Include="Framework\TextureMapping\StateManager.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
     <ClCompile Include="Framework\Render\ShaderManager.cpp" />
     <ClCompile Include="Framework\Render\Shader.cpp" />
     <ClCompile Include="Framework\TextureMapping\SRVManager.cpp" />
     <ClCompile Include="Object\Bagic\Sprite.cpp" />
-    <ClCompile Include="Scene\SpriteScene.cpp" />
+    <ClCompile Include="Scene\BagicScene\SpriteScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc" />

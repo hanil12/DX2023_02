@@ -65,13 +65,11 @@ public:
 
 	void SetMaxFrame(Vector2 value)
 	{
-		_data.maxFrame.x = value.x;
-		_data.maxFrame.y = value.y;
+		_data.maxFrame = value;
 	}
 	void SetCurFrame(Vector2 value)
 	{
-		_data.curFrame.x = value.x;
-		_data.curFrame.y = value.y;
+		_data.curFrame = value;
 	}
 
 	Data _data;

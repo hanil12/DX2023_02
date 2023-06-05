@@ -1,12 +1,12 @@
 #pragma once
-class Vector2
+class Vector2 : public XMFLOAT2
 {
 public:
-    Vector2() : x(0.0f), y(0.0f) {}
+    Vector2() : XMFLOAT2() {}
 
-    Vector2(float x, float y) : x(x), y(y) {}
+    Vector2(float x, float y) : XMFLOAT2(x,y) {}
 
-    Vector2(int x, int y) : x((float)x), y((float)y) {}
+    Vector2(int x, int y) : XMFLOAT2(((float)x), ((float)y)) {}
 
     ~Vector2() {}
 
@@ -79,9 +79,5 @@ public:
     }
 
     bool IsBetween(Vector2 v1, Vector2 v2);
-
-public:
-    float x;
-    float y;
 };
 
