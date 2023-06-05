@@ -10,7 +10,7 @@ Sprite::Sprite(wstring path, Vector2 maxFrame, Vector2 size)
 
 	_frameBuffer = make_shared<FrameBuffer>();
 	_frameBuffer->SetMaxFrame(maxFrame);
-	_frameBuffer->SetCurFrame({0.0f,0.0f});
+	_frameBuffer->SetCurFrame({0.0f,4.0f});
 }
 
 Sprite::~Sprite()
@@ -26,4 +26,9 @@ void Sprite::Render()
 {
 	_frameBuffer->SetPSBuffer(0);
 	Quad::Render();
+}
+
+void Sprite::SetCurFrame(Vector2 frame)
+{
+	_frameBuffer->SetCurFrame(frame);
 }

@@ -8,6 +8,8 @@ public:
 	void Update();
 	virtual void Render() override;
 
+	void SetCurFrame(Vector2 frame);
+
 private:
 	shared_ptr<FrameBuffer> _frameBuffer;
 

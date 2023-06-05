@@ -23,3 +23,9 @@ void SpriteScene::Render()
 	_transform->SetBuffer(0);
 	_sprite->Render();
 }
+
+void SpriteScene::PostRender()
+{
+	ImGui::SliderFloat2("Current Frame", (float*)&_curFrame, 0, 10, "%.0f");
+	_sprite->SetCurFrame(_curFrame);
+}
