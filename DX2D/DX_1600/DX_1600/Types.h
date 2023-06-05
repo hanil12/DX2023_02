@@ -35,6 +35,8 @@
 #define ADD_VS(k) ShaderManager::GetInstance()->AddVS(k)
 #define ADD_PS(k) ShaderManager::GetInstance()->AddPS(k)
 
+#define ADD_SRV(k) SRVManager::GetInstance()->Add_SRV(k)
+
 #define LERP(s,e,t) s + (e - s) * t
 
 struct Hit_Result

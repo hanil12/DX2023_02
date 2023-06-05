@@ -18,7 +18,9 @@ public:
 	bool _isActive;
 private:
 	shared_ptr<CircleCollider> _collider;
+
 	shared_ptr<Quad> _quad;
+	shared_ptr<Transform> _transform;
 
 	int _hp = 30;
 };
