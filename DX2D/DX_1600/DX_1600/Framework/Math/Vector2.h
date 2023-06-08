@@ -66,6 +66,7 @@ public:
     }
     void Normallize()
     {
+        // #TODO ¹Ù²ã¾ßÇÔ
         this->x /= Length();
         this->y /= Length();
     }

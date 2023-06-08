@@ -2,6 +2,7 @@
 class Sprite : public Quad
 {
 public:
+	Sprite(wstring path, Vector2 size);
 	Sprite(wstring path, Vector2 maxFrame, Vector2 size);
 	virtual ~Sprite();
 
@@ -12,9 +13,8 @@ public:
 	void SetCurFrame(Action::Clip clip);
 
 private:
-	shared_ptr<FrameBuffer> _frameBuffer;
+	shared_ptr<ActionBuffer> _actionBuffer;
 
-	Vector2 _maxFrame;
-	Vector2 _curFrame;
+	shared_ptr<Vector2> _maxFrame;
 };
 

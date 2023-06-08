@@ -7,10 +7,13 @@
 #include "../Scene/BagicScene/ColliderScene.h"
 #include "../Scene/BagicScene/SpriteScene.h"
 #include "../Scene/BagicScene/ActionScene.h"
+#include "../Scene/BagicScene/CupHeadScene.h"
 
 Program::Program() 
 {
-	_curScene = make_shared<ActionScene>();
+	srand(static_cast<unsigned int>(time(nullptr)));
+
+	_curScene = make_shared<CupHeadScene>();
 
 	_view = make_shared<MatrixBuffer>();
 	_projection = make_shared<MatrixBuffer>();
@@ -54,6 +57,7 @@ void Program::Render()
 	_curScene->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	ImGui::Text("MousePos : { %.0f , %.0f}", MOUSE_POS.x, MOUSE_POS.y);
 
 	_curScene->PostRender();
 

@@ -11,6 +11,7 @@
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
 #include <malloc.h>
+#include <time.h>
 #include <memory.h>
 #include <tchar.h>
 #include <vector>
@@ -53,6 +54,7 @@ using namespace Microsoft::WRL;
 // Utility
 #include "Framework/Utility/InputManager.h"
 #include "Framework/Utility/Timer.h"
+#include "Framework/Utility/tinyxml2.h"
 
 //Render
 #include "Framework/Render/ConstantBuffer.h"
