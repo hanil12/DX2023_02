@@ -20,11 +20,20 @@ Cup_Player::~Cup_Player()
 
 void Cup_Player::Update()
 {
+	Input();
+
 	_col->Update();
 
 	_action->Update();
 	_sprite->Update();
 	_transform->Update();
+
+	// 중력적용
+	{
+		_jumpPower -= DELTA_TIME * 500.0f;
+
+		_col->GetTransform()->AddVector2(Vector2(0,1) * _jumpPower * DELTA_TIME);
+	}
 }
 
 void Cup_Player::Render()
@@ -75,4 +84,12 @@ void Cup_Player::CreateAction()
 	_action = make_shared<Action>(clips, "CUP_IDLE");
 	_action->Play();
 	_sprite = make_shared<Sprite>(srvPath, Vector2(250,250));
+}
+
+void Cup_Player::Input()
+{
+	if(KEY_PRESS('A'))
+		_sprite->SetLeft();
+	if(KEY_PRESS('D'))
+		_sprite->SetRight();
 }

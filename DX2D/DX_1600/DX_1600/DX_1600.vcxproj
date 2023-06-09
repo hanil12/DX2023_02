@@ -256,6 +256,7 @@
   <ItemGroup>
     <Image Include="DX_1600.ico" />
     <Image Include="Resource\CupHead\Idle.png" />
+    <Image Include="Resource\CupHead\track.png" />
     <Image Include="Resource\earth.png" />
     <Image Include="Resource\Goomba.png" />
     <Image Include="Resource\moon.png" />

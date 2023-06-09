@@ -26,6 +26,9 @@ public:
 	virtual bool IsCollision(shared_ptr<class CircleCollider> other, bool isObb = false) abstract;
 	virtual bool IsCollision(shared_ptr<class RectCollider> other, bool isObb = false) abstract;
 
+	virtual bool Block(shared_ptr<class CircleCollider> other) abstract;
+	virtual bool Block(shared_ptr<class RectCollider> other) abstract;
+
 	void SetRed() { _colorBuffer->SetColor(RED); _colorBuffer->Update(); }
 	void SetGreen() { _colorBuffer->SetColor(GREEN); _colorBuffer->Update(); }
 

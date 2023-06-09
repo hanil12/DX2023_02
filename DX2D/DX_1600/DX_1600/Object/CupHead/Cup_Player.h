@@ -10,8 +10,11 @@ public:
 	void PostRender();
 
 	void CreateAction();
-
 	void SetPosition(Vector2 pos) { _col->SetPosition(pos); }
+
+	void Input();
+
+	shared_ptr<Collider> GetCollider() { return _col; }
 
 private:
 	shared_ptr<CircleCollider> _col;
@@ -22,5 +25,7 @@ private:
 	shared_ptr<Transform> _transform;
 
 	Vector2 _fixedPos;
+
+	float _jumpPower = 0.0f;
 };
 

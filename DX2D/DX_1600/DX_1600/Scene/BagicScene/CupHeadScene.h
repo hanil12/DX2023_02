@@ -11,5 +11,9 @@ public:
 
 private:
 	shared_ptr<class Cup_Player> _player;
+
+	shared_ptr<Collider> _col;
+	shared_ptr<Quad> _track;
+	shared_ptr<Transform> _transform;
 };
 

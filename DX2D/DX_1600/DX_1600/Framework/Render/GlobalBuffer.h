@@ -83,7 +83,8 @@ public:
 		Vector2 startPos;
 		Vector2 size;
 		Vector2 imageSize;
-		int padding[2] = {0 , 0};
+		int		isRight = 0;
+		int		padding;
 	};
 
 	ActionBuffer()

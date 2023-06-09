@@ -73,7 +73,7 @@ bool Collider::Block(shared_ptr<Collider> other)
 	case Collider::ColType::CIRCLE:
 	{
 		auto circle = dynamic_pointer_cast<CircleCollider>(other);
-		return Block(circle);
+		return this->Block(circle);
 	}
 	case Collider::ColType::RECT:
 	{
