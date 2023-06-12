@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\CupHead\Cup_Bullet.h" />
     <ClInclude Include="Scene\BagicScene\CupHeadScene.h" />
     <ClInclude Include="Object\CupHead\Cup_Player.h" />
     <ClInclude Include="Framework\Animation\Action.h" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Framework\Render\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\CupHead\Cup_Bullet.cpp" />
     <ClCompile Include="Scene\BagicScene\CupHeadScene.cpp" />
     <ClCompile Include="Object\CupHead\Cup_Player.cpp" />
     <ClCompile Include="Framework\Animation\Action.cpp" />
@@ -255,7 +257,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="DX_1600.ico" />
+    <Image Include="Resource\CupHead\Attack.png" />
+    <Image Include="Resource\CupHead\Bullet_Intro.png" />
+    <Image Include="Resource\CupHead\Bullet_Loop.png" />
+    <Image Include="Resource\CupHead\Boss_End.png" />
+    <Image Include="Resource\CupHead\Boss_Loop.png" />
+    <Image Include="Resource\CupHead\BossStart.png" />
     <Image Include="Resource\CupHead\Idle.png" />
+    <Image Include="Resource\CupHead\Jump.png" />
+    <Image Include="Resource\CupHead\Run.png" />
     <Image Include="Resource\CupHead\track.png" />
     <Image Include="Resource\earth.png" />
     <Image Include="Resource\Goomba.png" />
@@ -388,7 +398,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Resource\CupHead\Attack.xml" />
+    <Xml Include="Resource\CupHead\Bullet_Intro.xml" />
+    <Xml Include="Resource\CupHead\Bullet_Loop.xml" />
+    <Xml Include="Resource\CupHead\Boss_End.xml" />
+    <Xml Include="Resource\CupHead\Boss_Loop.xml" />
+    <Xml Include="Resource\CupHead\BossStart.xml" />
     <Xml Include="Resource\CupHead\Idle.xml" />
+    <Xml Include="Resource\CupHead\Jump.xml" />
+    <Xml Include="Resource\CupHead\Run.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -78,7 +78,7 @@ bool CircleCollider::Block(shared_ptr<CircleCollider> movable)
 	float scalar = abs((movable->GetWorldRadius() + GetWorldRadius()) - dir.Length());
 	dir.Normallize();
 
-	movable->GetTransform()->AddVector2(dir * scalar);
+	movable->GetTransform()->AddVector2(dir * scalar * DELTA_TIME);
 
 	return true;
 }

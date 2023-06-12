@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:5fc37b65ecff75dc3d051fc942cb45c0:c4db203ac7422bdb0e45e152e8d5f761:de9df130b825f218a5ab899a8f6693af$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="Jump.png" width="339" height="220">
+    <sprite n="cuphead_run_0001 (16).png" x="258" y="1" w="79" h="81" pX="0.5" pY="0.5" oX="111" oY="110" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (17).png" x="93" y="1" w="79" h="109" pX="0.5" pY="0.5" oX="111" oY="96" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (18).png" x="91" y="112" w="82" h="107" pX="0.5" pY="0.5" oX="109" oY="97" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (19).png" x="174" y="1" w="82" h="105" pX="0.5" pY="0.5" oX="109" oY="98" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (20).png" x="255" y="108" w="83" h="79" pX="0.5" pY="0.5" oX="109" oY="111" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (21).png" x="175" y="108" w="78" h="100" pX="0.5" pY="0.5" oX="111" oY="100" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (22).png" x="1" y="1" w="90" h="109" pX="0.5" pY="0.5" oX="105" oY="96" oW="300" oH="300"/>
+    <sprite n="cuphead_run_0001 (23).png" x="1" y="112" w="88" h="106" pX="0.5" pY="0.5" oX="106" oY="97" oW="300" oH="300"/>
+</TextureAtlas>

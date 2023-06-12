@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:f31fdf3eebe77608e3c6e70b45233160:2e0c9e94c524269cbb1f7481d9f99874:e3d24ab316e75f088f41ccd06773d698$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="Clown_Page_Last_Spawn_Penguin_End.png" width="502" height="4010">
+    <sprite n="clown_pillar_idle_0001(96).png" x="1" y="803" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(97).png" x="1" y="1605" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(98).png" x="1" y="2407" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(99).png" x="1" y="3209" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(100).png" x="1" y="1" w="500" h="800" pX="0.5" pY="0.5"/>
+</TextureAtlas>

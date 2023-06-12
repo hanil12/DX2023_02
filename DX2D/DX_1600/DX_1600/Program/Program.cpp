@@ -25,7 +25,7 @@ Program::Program()
 	_view->Update();
 	_projection->Update();
 
-	// Timer::GetInstance()->SetLockFPS(60.0);
+	Timer::GetInstance()->SetLockFPS(60.0);
 }
 
 Program::~Program()

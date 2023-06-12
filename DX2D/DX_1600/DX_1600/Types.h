@@ -9,6 +9,11 @@
 
 #define CENTER Vector2(WIN_WIDTH * 0.5f, WIN_HEIGHT * 0.5f)
 
+#define UP_VECTOR		 Vector2(0.0f,1.0f)
+#define DOWN_VECTOR		 Vector2(0.0f,-1.0f)
+#define RIGHT_VECTOR	 Vector2(1.0f,0.0f)
+#define LEFT_VECTOR		 Vector2(-1.0f,0.0f)
+
 #define RED			 {1.0f,0.0f,0.0f,1.0f}
 #define GREEN		 {0.0f,1.0f,0.0f,1.0f}
 #define BLUE		 {0.0f,0.0f,1.0f,1.0f}
