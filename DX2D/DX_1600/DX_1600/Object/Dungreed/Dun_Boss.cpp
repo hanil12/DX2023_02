@@ -6,7 +6,7 @@ Dun_Boss::Dun_Boss()
 	_quad = make_shared<Quad>(L"Resource/Goomba.png");
 	_transform = make_shared<Transform>();
 
-	_collider = make_shared<CircleCollider>(_quad->GetImageSize().x);
+	_collider = make_shared<CircleCollider>(_quad->GetQuadHalfSize().x);
 
 	_transform->SetParent(_collider->GetTransform());
 	_collider->GetTransform()->SetScale(Vector2(0.5f,0.5f));

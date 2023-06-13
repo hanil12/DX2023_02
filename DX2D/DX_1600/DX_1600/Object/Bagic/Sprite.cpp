@@ -9,7 +9,7 @@ Sprite::Sprite(wstring path, Vector2 size)
 	_ps = ADD_PS(L"Shader/ActionPS.hlsl");
 
 	_actionBuffer = make_shared<ActionBuffer>();
-	_actionBuffer->_data.imageSize = _srv->GetImageSize();
+	_actionBuffer->_data.imageSize = _srv.lock()->GetImageSize();
 }
 
 Sprite::Sprite(wstring path, Vector2 maxFrame, Vector2 size)
@@ -23,7 +23,7 @@ Sprite::Sprite(wstring path, Vector2 maxFrame, Vector2 size)
 	_ps = ADD_PS(L"Shader/ActionPS.hlsl");
 
 	_actionBuffer = make_shared<ActionBuffer>();
-	_actionBuffer->_data.imageSize = _srv->GetImageSize();
+	_actionBuffer->_data.imageSize = _srv.lock()->GetImageSize();
 }
 
 Sprite::~Sprite()

@@ -9,8 +9,12 @@ public:
 
 	virtual void Render();
 
+	void SetPS(shared_ptr<PixelShader> ps) { _ps = ps; }
+	void SetVS(shared_ptr<VertexShader> vs) { _vs = vs; }
+
 	void CreateVertices();
-	Vector2 GetImageSize() { return _halfSize; }
+	Vector2 GetQuadHalfSize() { return _halfSize; }
+	Vector2 GetImageSize() { return _srv.lock()->GetImageSize(); }
 
 protected:
 	// Á¤Á¡(pos, color, uv) 6°³
@@ -23,8 +27,8 @@ protected:
 	shared_ptr<IndexBuffer> _indexBuffer;
 
 	// Material
-	shared_ptr<VertexShader> _vs;
-	shared_ptr<PixelShader> _ps;
-	shared_ptr<SRV> _srv;
+	weak_ptr<VertexShader> _vs;
+	weak_ptr<PixelShader> _ps;
+	weak_ptr<SRV> _srv;
 };
 

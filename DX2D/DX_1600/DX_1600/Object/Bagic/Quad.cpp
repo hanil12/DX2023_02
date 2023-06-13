@@ -45,12 +45,12 @@ void Quad::Render()
     _vertexBuffer->Set(0);
     _indexBuffer->Set();
 
-    _vs->Set();
+    _vs.lock()->Set();
 
-    _srv->Set(0);
+    _srv.lock()->Set(0);
     SAMPLER->Set(0);
 
-    _ps->Set();
+    _ps.lock()->Set();
 
     DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     DC->DrawIndexed(_indices.size(), 0, 0);
@@ -60,8 +60,8 @@ void Quad::CreateVertices()
 {
     if (_halfSize.x == 0.0f && _halfSize.y == 0.0f)
     {
-        _halfSize.x = (_srv->GetImageSize().x) * 0.5f;
-        _halfSize.y = (_srv->GetImageSize().y) * 0.5;
+        _halfSize.x = (_srv.lock()->GetImageSize().x) * 0.5f;
+        _halfSize.y = (_srv.lock()->GetImageSize().y) * 0.5f;
     }
 
     Vertex_Texture temp;
