@@ -3,7 +3,7 @@
 
 TutorialScene::TutorialScene()
 {
-	_quad1 = make_shared<Quad>(L"Resource/Zelda.png");
+	_quad1 = make_shared<Quad>(L"Resource/Sun.png");
 	_quad1->SetPS(ADD_PS(L"Shader/FilterPS.hlsl"));
 	_transform1 = make_shared<Transform>();
 
@@ -11,6 +11,7 @@ TutorialScene::TutorialScene()
 
 	_filterBuffer = make_shared<FilterBuffer>();
 	_filterBuffer->_data.imageSize = _quad1->GetImageSize();
+	_filterBuffer->_data.radialCenter = Vector2(0.5f,0.5f);
 }
 
 TutorialScene::~TutorialScene()
@@ -35,4 +36,5 @@ void TutorialScene::PostRender()
 	ImGui::SliderInt("Selected", &_filterBuffer->_data.selected, 0,10);
 	ImGui::SliderInt("value1", &_filterBuffer->_data.value1, 1, 300);
 	ImGui::SliderInt("value2", &_filterBuffer->_data.value2, 0, 300);
+	ImGui::SliderInt("value3", &_filterBuffer->_data.value3, 0, 300);
 }
