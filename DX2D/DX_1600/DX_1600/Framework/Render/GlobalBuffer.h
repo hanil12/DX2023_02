@@ -128,3 +128,46 @@ public:
 
 	Data _data;
 };
+
+class CupHeadBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		Vector2 startPos;
+		Vector2 size;
+		Vector2 imageSize;
+		int		isRight = 0;
+		int		mosaicValue = 500;
+	};
+
+	CupHeadBuffer()
+		: ConstantBuffer(&_data, sizeof(_data))
+	{
+
+	}
+	virtual ~CupHeadBuffer() {}
+
+	Data _data;
+};
+
+class IntBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		int aInt = 0;
+		int bInt = 0;
+		int cInt = 0;
+		int dInt = 0;
+	};
+
+	IntBuffer()
+		: ConstantBuffer(&_data, sizeof(_data))
+	{
+
+	}
+	virtual ~IntBuffer() {}
+
+	Data _data;
+};

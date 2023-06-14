@@ -38,6 +38,7 @@ private:
 
 	vector<shared_ptr<Action>> _actions;
 
+	shared_ptr<IntBuffer> _intBuffer;
 	vector<shared_ptr<Sprite>> _sprites;
 	shared_ptr<Transform> _transform;
 

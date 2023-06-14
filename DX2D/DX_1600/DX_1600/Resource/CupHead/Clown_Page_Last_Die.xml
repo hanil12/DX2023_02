@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:8e9da5b1be9400acaef44c9711207fda:44e7c8a206098e0516de3b1dfae5f21b:14770f632210dfcdc4c2236f1062ec5d$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="Clown_Page_Last_Die.png" width="2510" height="1604">
+    <sprite n="clown_pillar_idle_0001(101).png" x="1" y="1" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(102).png" x="1" y="803" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(103).png" x="503" y="1" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(104).png" x="503" y="803" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(105).png" x="1005" y="1" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(106).png" x="1005" y="803" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(107).png" x="1507" y="1" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(108).png" x="1507" y="803" w="500" h="800" pX="0.5" pY="0.5"/>
+    <sprite n="clown_pillar_idle_0001(109).png" x="2009" y="1" w="500" h="800" pX="0.5" pY="0.5"/>
+</TextureAtlas>

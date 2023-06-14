@@ -11,6 +11,7 @@ public:
 
 private:
 	shared_ptr<class Cup_Player> _player;
+	shared_ptr<class Cup_Boss> _boss;
 
 	shared_ptr<Collider> _col;
 	shared_ptr<Quad> _track;

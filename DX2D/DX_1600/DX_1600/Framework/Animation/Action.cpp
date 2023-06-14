@@ -29,6 +29,13 @@ void Action::Update()
 		case Action::END:
 		{
 			_curClipIndex++;
+
+			if (_curClipIndex >= _clips.size() - 2)
+			{
+				if(_almostEnd != nullptr)
+					_almostEnd();
+			}
+
 			if(_curClipIndex >= _clips.size())
 				Stop();
 			break;
