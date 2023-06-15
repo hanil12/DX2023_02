@@ -8,12 +8,13 @@
 #include "../Scene/BagicScene/SpriteScene.h"
 #include "../Scene/BagicScene/ActionScene.h"
 #include "../Scene/BagicScene/CupHeadScene.h"
+#include "../Scene/BagicScene/EffectScene.h"
 
 Program::Program() 
 {
 	srand(static_cast<unsigned int>(time(nullptr)));
 
-	_curScene = make_shared<CupHeadScene>();
+	_curScene = make_shared<EffectScene>();
 
 	_view = make_shared<MatrixBuffer>();
 	_projection = make_shared<MatrixBuffer>();
@@ -39,6 +40,8 @@ void Program::Update()
 
 	_curScene->Collider_Update();
 	_curScene->Update();
+
+	EffectManager::GetInstance()->Update();
 }
 
 void Program::Render()
@@ -55,6 +58,7 @@ void Program::Render()
 	ALPHA->SetState();
 
 	_curScene->Render();
+	EffectManager::GetInstance()->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
 	ImGui::Text("MousePos : { %.0f , %.0f}", MOUSE_POS.x, MOUSE_POS.y);

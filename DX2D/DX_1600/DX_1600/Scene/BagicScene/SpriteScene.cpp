@@ -27,5 +27,5 @@ void SpriteScene::Render()
 void SpriteScene::PostRender()
 {
 	ImGui::SliderFloat2("Current Frame", (float*)&_curFrame, 0, 10, "%.0f");
-	_sprite->SetCurFrame(_curFrame);
+	_sprite->SetCurClip(_curFrame);
 }

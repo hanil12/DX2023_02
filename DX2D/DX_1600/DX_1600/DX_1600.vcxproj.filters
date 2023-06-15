@@ -159,6 +159,15 @@
     <ClInclude Include="Object\CupHead\Cup_Boss.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\BagicScene\EffectScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Bagic\Effect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Bagic\EffectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX_1600.cpp">
@@ -290,6 +299,15 @@
     <ClCompile Include="Object\CupHead\Cup_Boss.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\BagicScene\EffectScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Bagic\Effect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Bagic\EffectManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc">
@@ -352,6 +370,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Resource\CupHead\Clown_Page_Last_Die.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\CupHead\hit_4x2.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

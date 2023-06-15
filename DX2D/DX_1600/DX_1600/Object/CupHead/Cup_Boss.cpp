@@ -35,6 +35,8 @@ void Cup_Boss::Update()
 
 	_actions[_state]->Update();
 	_intBuffer->Update();
+
+	_sprites[_state]->SetCurClip(_actions[_state]->GetCurClip());
 	_sprites[_state]->Update();
 	_transform->Update();
 }
@@ -42,8 +44,6 @@ void Cup_Boss::Update()
 void Cup_Boss::Render()
 {
 	_transform->SetBuffer(0);
-
-	_sprites[_state]->SetCurFrame(_actions[_state]->GetCurClip());
 	_intBuffer->SetPSBuffer(1);
 	_sprites[_state]->Render();
 
@@ -91,8 +91,6 @@ void Cup_Boss::CreateAction(wstring srvPath, string xmlPath, string actionName, 
 
 	action->Update();
 	sprite->Update();
-
-	sprite->SetCurFrame(action->GetCurClip());
 
 	_actions.push_back(action);
 	_sprites.push_back(sprite);

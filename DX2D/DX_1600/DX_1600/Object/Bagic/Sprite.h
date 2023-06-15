@@ -9,8 +9,8 @@ public:
 	void Update();
 	virtual void Render() override;
 
-	void SetCurFrame(Vector2 frame);
-	void SetCurFrame(Action::Clip clip);
+	void SetCurClip(Vector2 frame);
+	void SetCurClip(Action::Clip clip);
 
 	void SetLeft() { _actionBuffer->_data.isRight = 0; }
 	void SetRight() { _actionBuffer->_data.isRight = 1; }

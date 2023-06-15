@@ -30,7 +30,7 @@ void ActionScene::Update()
 void ActionScene::Render()
 {
 	_transform->SetBuffer(0);
-	_sprite->SetCurFrame(_action->GetCurClip());
+	_sprite->SetCurClip(_action->GetCurClip());
 	_sprite->Render();
 }
 

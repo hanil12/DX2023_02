@@ -49,7 +49,7 @@ void Cup_Player::Update()
 void Cup_Player::Render()
 {
 	_transform->SetBuffer(0);
-	_sprites[_curState]->SetCurFrame(_actions[_curState]->GetCurClip());
+	_sprites[_curState]->SetCurClip(_actions[_curState]->GetCurClip());
 	_intBuffer->SetPSBuffer(1);
 	_sprites[_curState]->Render();
 
