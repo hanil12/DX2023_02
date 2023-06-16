@@ -66,15 +66,18 @@ public:
     }
     void Normallize()
     {
-        // #TODO ¹Ù²ã¾ßÇÔ
-        this->x /= Length();
-        this->y /= Length();
+        float length = Length();
+
+        this->x /= length;
+        this->y /= length;
     }
     Vector2 NormalVector2() const
     {
         Vector2 result;
-        result.x = this->x / Length();
-        result.y = this->y / Length();
+        float length = Length();
+
+        result.x = this->x / length;
+        result.y = this->y / length;
 
         return result;
     }

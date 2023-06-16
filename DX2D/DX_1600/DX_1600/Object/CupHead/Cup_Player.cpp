@@ -6,6 +6,8 @@ using namespace tinyxml2;
 
 Cup_Player::Cup_Player()
 {
+	SOUND->Add("Cup_Attack", "Resource/Sound/attack.wav");
+
 	_col = make_shared<CircleCollider>(50);
 
 	CreateAction(L"Resource/CupHead/Idle.png", "Resource/CupHead/Idle.xml", "IDLE", Vector2(250,250), Action::LOOP);
@@ -108,6 +110,7 @@ void Cup_Player::Input()
 {
 	if (KEY_DOWN(VK_LBUTTON) && _isAttack == false && _isFalling == false)
 	{
+		SOUND->Play("Cup_Attack", 0.3f);
 		_isAttack = true;
 		SetAction(ATTACK);
 	}
