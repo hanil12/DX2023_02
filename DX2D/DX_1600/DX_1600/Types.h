@@ -44,6 +44,7 @@
 
 #define EFFECT_PLAY(n,p) EffectManager::GetInstance()->Play(n,p)
 #define SOUND Sound::GetInstance()
+#define CAMERA Camera::GetInstance()
 
 #define LERP(s,e,t) s + (e - s) * t
 

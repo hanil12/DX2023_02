@@ -10,6 +10,12 @@ Sound::Sound()
 
 Sound::~Sound()
 {
+	for (auto pair : _soundMap)
+	{
+		pair.second._sound->release();
+	}
+
+	_soundSystem->release();
 }
 
 void Sound::Update()

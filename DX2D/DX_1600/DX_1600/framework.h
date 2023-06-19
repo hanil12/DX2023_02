@@ -72,6 +72,9 @@ using namespace Microsoft::WRL;
 #include "Framework/Render/PixelShader.h"
 #include "Framework/Render/ShaderManager.h"
 
+// Camera
+#include "Framework/Camera/Camera.h"
+
 // Collider
 #include "Framework/Collider/Collider.h"
 #include "Framework/Collider/RectCollider.h"

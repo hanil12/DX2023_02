@@ -28,6 +28,8 @@ public:
 	void SetAction(State state);
 	void SetGrounded() { _isFalling = false; }
 
+	shared_ptr<Transform> GetTransform() { return _col->GetTransform(); }
+
 	shared_ptr<Collider> GetCollider() { return _col; }
 
 private:
