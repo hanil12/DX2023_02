@@ -160,6 +160,7 @@
     <ClInclude Include="Library\FMOD\inc\fmod_dsp_effects.h" />
     <ClInclude Include="Library\FMOD\inc\fmod_errors.h" />
     <ClInclude Include="Library\FMOD\inc\fmod_output.h" />
+    <ClInclude Include="Framework\Math\MyMath.h" />
     <ClInclude Include="Object\Bagic\EffectManager.h" />
     <ClInclude Include="Object\Bagic\Effect.h" />
     <ClInclude Include="Scene\BagicScene\EffectScene.h" />
@@ -215,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Camera\Camera.cpp" />
+    <ClCompile Include="Framework\Math\MyMath.cpp" />
     <ClCompile Include="Object\Bagic\EffectManager.cpp" />
     <ClCompile Include="Object\Bagic\Effect.cpp" />
     <ClCompile Include="Scene\BagicScene\EffectScene.cpp" />

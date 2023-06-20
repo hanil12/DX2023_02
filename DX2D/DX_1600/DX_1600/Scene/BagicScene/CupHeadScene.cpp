@@ -24,6 +24,8 @@ CupHeadScene::CupHeadScene()
 	_col->GetTransform()->SetPosition(Vector2(0.0f, CENTER.y * - 1));
 
 	CAMERA->SetTarget(_player->GetTransform());
+	CAMERA->SetLeftBottom(Vector2(-trackSize.x, -1000.0f));
+	CAMERA->SetRightTop(Vector2(trackSize.x, 1000.0f));
 }
 
 CupHeadScene::~CupHeadScene()
@@ -56,4 +58,14 @@ void CupHeadScene::PostRender()
 {
 	_player->PostRender();
 	_boss->PostRender();
+
+	if (ImGui::Button("TargetON", ImVec2(100, 50)))
+	{
+		CAMERA->SetTarget(_player->GetTransform());
+	}
+	
+	if (ImGui::Button("TargetOFF", ImVec2(100, 50)))
+	{
+		CAMERA->SetTarget(nullptr);
+	}
 }

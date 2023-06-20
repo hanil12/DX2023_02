@@ -166,6 +166,7 @@ void Cup_Player::Attack()
 	SetAction(IDLE);
 
 	bullet->Fire(_col->GetTransform()->GetWorldPosition(), RIGHT_VECTOR);
+	CAMERA->ShakeStart(50.0f, 3.0f);
 }
 
 void Cup_Player::SetAction(State state)

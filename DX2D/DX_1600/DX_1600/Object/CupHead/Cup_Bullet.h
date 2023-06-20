@@ -19,7 +19,7 @@ public:
 	void Fire(Vector2 startPos, Vector2 dir);
 	void EndEvent();
 
-	bool _isActive;
+	bool _isActive = false;
 private:
 	void SetLeft();
 	void SetRight();

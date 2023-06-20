@@ -54,6 +54,7 @@ using namespace Microsoft::WRL;
 // Math
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
+#include "Framework/Math/MyMath.h"
 
 // Utility
 #include "Framework/Utility/InputManager.h"
