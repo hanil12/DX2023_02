@@ -61,6 +61,8 @@ using namespace Microsoft::WRL;
 #include "Framework/Utility/Timer.h"
 #include "Framework/Utility/tinyxml2.h"
 #include "Framework/Utility/Sound.h"
+#include "Framework/Utility/BinaryWriter.h"
+#include "Framework/Utility/BinaryReader.h"
 
 //Render
 #include "Framework/Render/ConstantBuffer.h"
