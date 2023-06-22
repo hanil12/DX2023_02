@@ -5,7 +5,9 @@ public:
 	Scene() {}
 	virtual ~Scene() {}
 
-	virtual void Collider_Update() {}
+	virtual void Init() {};
+	virtual void End() {};
+
 	virtual void Update() abstract;
 	virtual void Render() abstract;
 	virtual void PostRender() {}

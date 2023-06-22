@@ -34,6 +34,7 @@
 #define KEY_PRESS(k) InputManager::GetInstance()->Press(k)
 
 #define MOUSE_POS InputManager::GetInstance()->GetMousePos()
+#define W_MOUSE_POS Camera::GetInstance()->GetWorldMousePos()
 
 #define DELTA_TIME Timer::GetInstance()->GetDeltaTime()
 
@@ -45,6 +46,8 @@
 #define EFFECT_PLAY(n,p) EffectManager::GetInstance()->Play(n,p)
 #define SOUND Sound::GetInstance()
 #define CAMERA Camera::GetInstance()
+
+#define SCENE SceneManager::GetInstance()
 
 #define LERP(s,e,t) s + (e - s) * t
 

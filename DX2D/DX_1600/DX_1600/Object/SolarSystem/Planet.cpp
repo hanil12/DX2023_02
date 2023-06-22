@@ -6,6 +6,7 @@ Planet::Planet(wstring file, Vector2 scale, float angle)
 , _revolutionAngle(_angle * 0.5f)
 {
 	_quad = make_shared<Quad>(file);
+	_transform = make_shared<Transform>();
 	_transform->SetScale(scale);
 
 	_revolution = make_shared<Transform>();

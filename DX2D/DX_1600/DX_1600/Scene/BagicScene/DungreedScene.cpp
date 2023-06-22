@@ -20,13 +20,6 @@ DungreedScene::~DungreedScene()
 {
 }
 
-void DungreedScene::Collider_Update()
-{
-	_player->Collider_Update();
-	_floor->Update();
-	_boss->Collider_Update();
-}
-
 void DungreedScene::Update()
 {
 	_player->Update();
@@ -39,6 +32,10 @@ void DungreedScene::Update()
 		if (_player->IsCollision_Bullets(_boss->GetCollider()))
 			_boss->Damaged(5);
 	}
+
+	_player->Collider_Update();
+	_floor->Update();
+	_boss->Collider_Update();
 }
 
 void DungreedScene::Render()

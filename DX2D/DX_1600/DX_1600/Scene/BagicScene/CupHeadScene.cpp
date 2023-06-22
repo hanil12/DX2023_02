@@ -34,6 +34,16 @@ CupHeadScene::~CupHeadScene()
 {
 }
 
+void CupHeadScene::Init()
+{
+	Load();
+}
+
+void CupHeadScene::End()
+{
+	// CupHead ÃÑ¾ËÈ¸¼ö...
+}
+
 void CupHeadScene::Update()
 {
 	_player->Update();

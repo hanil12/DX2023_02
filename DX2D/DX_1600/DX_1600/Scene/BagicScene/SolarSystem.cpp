@@ -22,7 +22,7 @@ SolarSystem::~SolarSystem()
 
 void SolarSystem::Update()
 {
-	_sun->SetPosition(MOUSE_POS);
+	_sun->SetPosition(W_MOUSE_POS);
 
 	_sun->Update();
 	_earth->Update();
