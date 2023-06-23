@@ -22,6 +22,11 @@ void Program::Update()
 	SCENE->Update();
 
 	EffectManager::GetInstance()->Update();
+
+	if (KEY_DOWN(VK_F1))
+	{
+		Collider::_isDebug = !Collider::_isDebug;
+	}
 }
 
 void Program::Render()
@@ -43,6 +48,7 @@ void Program::Render()
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
 	ImGui::Text("MousePos : { %.0f , %.0f}", W_MOUSE_POS.x, W_MOUSE_POS.y);
 
+	CAMERA->SetUICameraBuffer();
 	CAMERA->PostRender();
 	SCENE->PostRender();
 

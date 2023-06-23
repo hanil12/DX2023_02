@@ -27,6 +27,11 @@ CupHeadScene::CupHeadScene()
 	CAMERA->SetLeftBottom(Vector2(-trackSize.x, -1000.0f));
 	CAMERA->SetRightTop(Vector2(trackSize.x, 1000.0f));
 
+	shared_ptr<SRV> srv = ADD_SRV(L"Resource/UI/Button.png");
+	_button = make_shared<Button>(L"Resource/UI/Button.png", srv->GetImageSize());
+	_button->SetPosition(Vector2(0,0));
+	_button->SetEvent(std::bind(&CupHeadScene::Load, this));
+
 	Load();
 }
 
@@ -51,6 +56,8 @@ void CupHeadScene::Update()
 
 	_transform->Update();
 	_col->Update();
+
+	_button->Update();
 
 	if(_col->Block(_player->GetCollider()))
 		_player->SetGrounded();
@@ -90,6 +97,8 @@ void CupHeadScene::PostRender()
 	{
 		Load();
 	}
+
+	_button->PostRender();
 }
 
 void CupHeadScene::Save()

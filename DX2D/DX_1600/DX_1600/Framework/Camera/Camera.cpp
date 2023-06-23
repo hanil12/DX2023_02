@@ -5,6 +5,8 @@ Camera* Camera::_instance = nullptr;
 Camera::Camera()
 {
 	_view = make_shared<Transform>();
+	_uiView = make_shared<Transform>();
+	_uiView->Update();
 
 	_projection = make_shared<MatrixBuffer>();
 

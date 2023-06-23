@@ -38,6 +38,8 @@ public:
 	const shared_ptr<Transform> GetTransform() { return _transform; }
 	void SetParent(shared_ptr<Transform> transform) { _transform->SetParent(transform); }
 
+	static bool _isDebug;
+
 protected:
 	virtual bool AABB_Collision(shared_ptr<class CircleCollider> other) abstract;
 	virtual bool AABB_Collision(shared_ptr<class RectCollider> other) abstract;

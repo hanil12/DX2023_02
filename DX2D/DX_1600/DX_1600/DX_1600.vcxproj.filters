@@ -210,6 +210,9 @@
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\UI\Button.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX_1600.cpp">
@@ -368,6 +371,9 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\UI\Button.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1600.rc">
@@ -435,6 +441,9 @@
     <Image Include="Resource\CupHead\hit_4x2.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\UI\Button.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\TutorialShader.hlsl" />
@@ -447,6 +456,7 @@
     <FxCompile Include="Shader\ActionPS.hlsl" />
     <FxCompile Include="Shader\FilterPS.hlsl" />
     <FxCompile Include="Shader\CupHeadPS.hlsl" />
+    <FxCompile Include="Shader\ButtonPS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resource\CupHead\Idle.xml" />

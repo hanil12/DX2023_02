@@ -99,6 +99,9 @@ using namespace Microsoft::WRL;
 #include "Object/Bagic/Effect.h"
 #include "Object/Bagic/EffectManager.h"
 
+// UI
+#include "Object/UI/Button.h"
+
 // Scene
 #include "Scene/Scene.h"
 #include "Scene/SceneManager.h"

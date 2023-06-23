@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "Collider.h"
 
+bool Collider::_isDebug = true;
+
 Collider::Collider(ColType type)
 : _type(type)
 {
@@ -17,6 +19,9 @@ void Collider::Update()
 
 void Collider::Render()
 {
+	if(_isDebug != true)
+		return;
+
     _vertexBuffer->Set(0);
 
     _transform->SetBuffer(0);
