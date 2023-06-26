@@ -5,14 +5,12 @@ SamplerState samp : register(s0);
 struct VertexInput
 {
 	float4 pos : POSITION;
-	float4 color : COLOR;
 	float2 uv : UV;
 };
 
 struct PixelInput
 {
 	float4 pos : SV_POSITION;
-	float4 color: COLOR;
 	float2 uv : UV;
 };
 
@@ -20,7 +18,6 @@ PixelInput VS(VertexInput input)
 {
 	PixelInput output;
 	output.pos = input.pos;
-	output.color = input.color;
 	output.uv = input.uv;
 
 	return output;

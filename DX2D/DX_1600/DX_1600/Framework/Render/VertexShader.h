@@ -14,5 +14,6 @@ public:
 private:
 	ComPtr<ID3D11VertexShader> _vertexShader;
 	ComPtr<ID3D11InputLayout> _inputLayout;
+	ComPtr<ID3D11ShaderReflection> _reflection;
 };
 

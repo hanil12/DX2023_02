@@ -4,7 +4,7 @@
 TutorialScene::TutorialScene()
 {
 	_quad1 = make_shared<Quad>(L"Resource/Sun.png");
-	_quad1->SetPS(ADD_PS(L"Shader/FilterPS.hlsl"));
+	//_quad1->SetPS(ADD_PS(L"Shader/FilterPS.hlsl"));
 	_transform1 = make_shared<Transform>();
 
 	_transform1->SetPosition(CENTER);
