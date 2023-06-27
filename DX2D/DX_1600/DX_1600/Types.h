@@ -58,3 +58,8 @@ struct Hit_Result
 	bool isCollision = false;
 	vector<Vector2> contact;
 };
+
+struct BlockInfo
+{
+	Vector2 pos;
+};
