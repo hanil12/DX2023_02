@@ -40,13 +40,18 @@ void Program::Render()
 	CAMERA->SetCameraBuffer();
 	CAMERA->SetProjectionBuffer();
 
+	SCENE->PreRender();
+
 	ALPHA->SetState();
+	Device::GetInstance()->SetMainRenderTarget();
 
 	SCENE->Render();
 	EffectManager::GetInstance()->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
-	ImGui::Text("MousePos : { %.0f , %.0f}", W_MOUSE_POS.x, W_MOUSE_POS.y);
+	ImGui::Text("W_MousePos : { %.0f , %.0f}", W_MOUSE_POS.x, W_MOUSE_POS.y);
+	ImGui::Text("ScreenMousePos : { %.0f , %.0f}", InputManager::GetInstance()->GetScreenMousePos().x, InputManager::GetInstance()->GetScreenMousePos().y);
+	ImGui::Text("WindowMousePos : { %.0f , %.0f}", MOUSE_POS.x, MOUSE_POS.y);
 
 	CAMERA->SetUICameraBuffer();
 	CAMERA->PostRender();

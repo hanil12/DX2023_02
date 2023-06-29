@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "Quad.h"
 
-Quad::Quad()
+Quad::Quad(Vector2 size)
 {
     _vs = ADD_VS(L"Shader/TextureVS.hlsl");
     _ps = ADD_PS(L"Shader/TexturePS.hlsl");
 
+    _halfSize = size * 0.5f;
     CreateVertices();
     _vertexBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex_Texture), _vertices.size(), 0);
     _indexBuffer = make_shared<IndexBuffer>(_indices.data(), _indices.size());
@@ -47,7 +48,8 @@ void Quad::Render()
 
     _vs.lock()->Set();
 
-    _srv.lock()->Set(0);
+    if(_srv.expired() == false)
+        _srv.lock()->Set(0);
     SAMPLER->Set(0);
 
     _ps.lock()->Set();

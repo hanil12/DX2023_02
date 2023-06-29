@@ -24,7 +24,7 @@ void Button::Update()
 	_collider->Update();
 	_transform->Update();
 
-	if (_collider->IsCollision(MOUSE_POS))
+	if (_collider->IsCollision(InputManager::GetInstance()->GetScreenMousePos()))
 	{
 		_buttonBuffer->_data.state = 1;
 		if (KEY_PRESS(VK_LBUTTON))

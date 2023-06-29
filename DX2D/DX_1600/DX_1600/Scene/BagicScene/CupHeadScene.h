@@ -9,6 +9,7 @@ public:
 	virtual void End() override;
 	virtual void Update() override;
 	virtual void Render() override;
+	virtual void PreRender() override;
 	virtual void PostRender() override;
 
 	void Save();
@@ -23,5 +24,10 @@ private:
 	shared_ptr<Collider> _col;
 	shared_ptr<Quad> _track;
 	shared_ptr<Transform> _transform;
+
+	shared_ptr<Quad> _rtvQuad;
+	shared_ptr<Transform> _rtvTransform;
+	shared_ptr<RenderTarget> _rtv;
+	shared_ptr<FilterBuffer> _filter;
 };
 

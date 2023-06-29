@@ -28,6 +28,7 @@ public:
 
 	void Update();
 	void Render();
+	void PreRender();
 	void PostRender();
 
 	void NextScene();

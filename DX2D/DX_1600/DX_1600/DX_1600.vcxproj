@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Object\CupHead\Cup_Block.h" />
+    <ClInclude Include="Framework\Render\RenderTarget.h" />
     <ClInclude Include="Scene\BagicScene\MapToolScene.h" />
     <ClInclude Include="Object\UI\Button.h" />
     <ClInclude Include="Framework\Utility\BinaryReader.h" />
@@ -222,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object\CupHead\Cup_Block.cpp" />
+    <ClCompile Include="Framework\Render\RenderTarget.cpp" />
     <ClCompile Include="Scene\BagicScene\MapToolScene.cpp" />
     <ClCompile Include="Object\UI\Button.cpp" />
     <ClCompile Include="Framework\Utility\BinaryReader.cpp" />

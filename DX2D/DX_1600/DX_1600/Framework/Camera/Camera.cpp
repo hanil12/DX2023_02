@@ -62,7 +62,7 @@ Vector2 Camera::GetWorldMousePos()
 {
 	XMMATRIX inverseM = DirectX::XMMatrixInverse(nullptr, _view->GetMatrix());
 
-	Vector2 mousePos = MOUSE_POS;
+	Vector2 mousePos = MOUSE_POS - CENTER;
 
 	return mousePos.TransformCoord(inverseM);
 }

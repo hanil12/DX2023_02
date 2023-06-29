@@ -6,6 +6,7 @@
 
 CupHeadScene::CupHeadScene()
 {
+#pragma region CupHead
 	_player = make_shared<Cup_Player>();
 	_player->SetPosition(Vector2(0,0));
 
@@ -33,6 +34,24 @@ CupHeadScene::CupHeadScene()
 	_button->SetEvent(std::bind(&CupHeadScene::Load, this));
 
 	Load();
+#pragma endregion
+
+#pragma region RTV
+	_rtv = make_shared<RenderTarget>();
+	_rtvQuad = make_shared<Quad>(Vector2(WIN_WIDTH, WIN_HEIGHT));
+	_rtvQuad->SetSRV(_rtv->GetSRV());
+	_rtvQuad->SetPS(ADD_PS(L"Shader/FilterPS.hlsl"));
+
+	// rtvQuad Transform
+	_rtvTransform = make_shared<Transform>();
+	_rtvTransform->SetPosition(Vector2(-50,-100));
+	_rtvTransform->SetScale(Vector2(0.5f,0.5f));
+
+	// fiterBuffer
+	_filter = make_shared<FilterBuffer>();
+	_filter->_data.selected = 1;
+
+#pragma endregion
 }
 
 CupHeadScene::~CupHeadScene()
@@ -61,10 +80,22 @@ void CupHeadScene::Update()
 
 	if(_col->Block(_player->GetCollider()))
 		_player->SetGrounded();
+
+	_rtvTransform->Update();
+	_filter->Update();
 }
 
 void CupHeadScene::Render()
 {
+	_rtvTransform->SetBuffer(0);
+	_filter->SetPSBuffer(0);
+	_rtvQuad->Render();
+}
+
+void CupHeadScene::PreRender()
+{
+	_rtv->Set();
+
 	_transform->SetBuffer(0);
 	_track->Render();
 	_col->Render();
@@ -97,6 +128,8 @@ void CupHeadScene::PostRender()
 	{
 		Load();
 	}
+
+	ImGui::SliderInt("Mosaic", &_filter->_data.value1,1, 300);
 
 	_button->PostRender();
 }

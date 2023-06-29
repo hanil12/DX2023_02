@@ -27,6 +27,8 @@ public:
 	void Clear();
 	void Present();
 
+	void SetMainRenderTarget();
+
 private:
 	Device();
 	~Device();

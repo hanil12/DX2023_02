@@ -66,8 +66,6 @@ void Device::CreateDoubleBuffer()
     _swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
     _device->CreateRenderTargetView(backBuffer.Get(), nullptr, _renderTargetView.GetAddressOf());
 
-    _deviceContext->OMSetRenderTargets(1, _renderTargetView.GetAddressOf(), nullptr);
-
     D3D11_VIEWPORT vp;
     vp.Width = WIN_WIDTH;
     vp.Height = WIN_HEIGHT;
@@ -92,4 +90,9 @@ void Device::Clear()
 void Device::Present()
 {
     _swapChain->Present(0, 0);
+}
+
+void Device::SetMainRenderTarget()
+{
+    _deviceContext->OMSetRenderTargets(1, _renderTargetView.GetAddressOf(), nullptr);
 }
